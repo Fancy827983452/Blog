@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="col-lg-3">
+        <ul class="list-group" id="ueserfunction">
+            <li class="list-group-item">
+                <a><img class="img-responsive" name="head" id="head" src="~/File/1.jpg" /></a>
+            </li>
+            <li class="list-group-item"><a href="~/User/Write">发表博文</a></li>
+            <li class="list-group-item"><a href="~/User/Index">查看博文</a></li>
+            <li class="list-group-item"><a href="~/User/EditInfo">修改信息</a></li>
+            <li class="list-group-item"><a href="~/User/EditPassword">修改密码</a></li>
+            <li class="list-group-item"><a href="~/User/Focus">我的关注</a></li>
+            <li class="list-group-item"><a href="~/User/Fans">我的粉丝</a></li>
+            <li class="list-group-item"><a href="~/User/Message">我的私信</a></li>
+
+        </ul>
+    </div>
+    <div class="col-lg-8">
+        <div>@RenderBody()</div>
+    </div>
+</div>
