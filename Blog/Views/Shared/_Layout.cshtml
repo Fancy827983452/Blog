@@ -14,12 +14,30 @@
                 <div class="col-md-6">
                     <strong>Welcome to Y-3Blog</strong>
                 </div>
-                <div class="col-md-2 col-md-offset-4" >
-                    <ul class="nav navbar-nav">
-                        <li><a href="~/Account/SignIn"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
-                        <li><a href="~/Account/Register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>                    
-                    </ul>
-                </div>
+                @{
+                    if (Session["UserName"] != null)
+                    {
+                        <div class="col-md-2 col-md-offset-4">
+                            <ul class="nav navbar-nav">
+                                <li><a href="~/User/Index"><span class="glyphicon glyphicon-user"></span> @Session["UserName"]</a></li>
+                                <li><a href="~/Account/LogOut"><span class="glyphicon glyphicon-log-out"></span> 登出</a></li>
+                            </ul>
+                        </div>
+                        if (Session["Identification"].ToString() == "admin")
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-md-2 col-md-offset-4">
+                            <ul class="nav navbar-nav">
+                                <li><a href="~/Account/SignIn"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                                <li><a href="~/Account/Register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                            </ul>
+                        </div>
+                    }
+                }
             </div>
         </div>
     </nav>

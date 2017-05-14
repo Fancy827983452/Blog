@@ -3,11 +3,13 @@ using Blog.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
 namespace Blog.Controllers
 {
+
     public class AccountController : Controller
     {
 
@@ -38,6 +40,7 @@ namespace Blog.Controllers
                         if (u.Password == password)
                         {
                             Session["UserName"] = u.UserName;
+                            Session["Identification"] = u.Identification;
                             return Content("<script>alert('登录成功，欢迎回来！');window.open('" + Url.Content("~/Home/Index") + "', '_self')</script>");
                         }
                         else
@@ -96,6 +99,7 @@ namespace Blog.Controllers
                         //    throw;
                         //}
                         Session["UserName"] = userAccountModel.UserName;
+                        Session["Identification"] = userAccountModel.Identification;
                         return Content("<script>alert('注册成功！');window.open('" + Url.Content("~/Home/Index") + "', '_self')</script>");
                     }
                 }
@@ -110,35 +114,11 @@ namespace Blog.Controllers
             return View(userAccountModel);
         }
 
-
-        //public JsonResult Validate()
-        //{
-        //    string userID = Request["userID"];
-        //    string userName = Request["userName"];
-        //    string password = Request["password"];
-        //    string confirmPassword= Request["confirmPassword"];
-
-        //    if (userID.Trim()=="")
-        //    {
-        //        return Json(new { status = 1, msg = "用户ID不能为空！" }, JsonRequestBehavior.AllowGet);
-        //    }
-        //    else if (userName.Trim() == "")
-        //    {
-        //        return Json(new { status = 2, msg = "用户昵称不能为空！" }, JsonRequestBehavior.AllowGet);
-        //    }
-        //    else if (password.ToString().Trim() == "")
-        //    {
-        //        return Json(new { status = 3, msg = "密码不能为空！" }, JsonRequestBehavior.AllowGet);
-        //    }
-        //    else if (confirmPassword.ToString().Trim() == "")
-        //    {
-        //        return Json(new { status = 4, msg = "确认密码不能为空！" }, JsonRequestBehavior.AllowGet);
-        //    }
-        //    else if (!confirmPassword.Equals(password))
-        //    {
-        //        return Json(new { status = 5, msg = "两次输入的密码不一致！" }, JsonRequestBehavior.AllowGet);
-        //    }
-        //    return Json(new { status = 0, msg = "" }, JsonRequestBehavior.AllowGet);
-        //}
+        public ActionResult LogOut()
+        {
+            Session["UserName"] = null;
+            Session["Identification"] = null;
+            return Redirect(Url.Content("~/"));
+        }
     }
 }
