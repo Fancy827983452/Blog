@@ -101,6 +101,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\owncss\style.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\UEditer\index.html" />
+    <Content Include="Content\UEditer\ueditor.all.js" />
+    <Content Include="Content\UEditer\ueditor.all.min.js" />
+    <Content Include="Content\UEditer\ueditor.config.js" />
+    <Content Include="Content\UEditer\ueditor.parse.js" />
+    <Content Include="Content\UEditer\ueditor.parse.min.js" />
     <Content Include="File\1.jpg" />
     <Content Include="File\2.jpg" />
     <Content Include="File\3.jpg" />
@@ -108,6 +114,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\NIIT学生个人博客系统软件架构 by Y-3.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -127,6 +134,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -159,6 +167,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\UEditer\asp\" />
+    <Folder Include="Content\UEditer\dialogs\" />
+    <Folder Include="Content\UEditer\lang\" />
+    <Folder Include="Content\UEditer\themes\" />
+    <Folder Include="Content\UEditer\third-party\" />
+    <Folder Include="Views\Blog\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
