@@ -117,10 +117,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\owncss\style.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="File\1.jpg" />
+    <Content Include="File\2.jpg" />
+    <Content Include="File\3.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\NIIT学生个人博客系统软件架构 by Y-3.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -140,6 +144,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -161,12 +166,6 @@
     <Content Include="Views\User\Focus.cshtml" />
     <Content Include="Views\User\Message.cshtml" />
     <Content Include="Views\User\Write.cshtml" />
-    <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Lock.cshtml" />
-    <Content Include="Views\Admin\UnLock.cshtml" />
-    <Content Include="Views\Admin\DeleteBlogs.cshtml" />
-    <Content Include="Views\Admin\RecommendBlogs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -176,6 +175,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\ueditor\dialogs\" />
+    <Folder Include="Content\ueditor\lang\" />
+    <Folder Include="Content\ueditor\net\" />
+    <Folder Include="Content\ueditor\themes\" />
+    <Folder Include="Content\ueditor\third-party\" />
+    <Folder Include="Views\Blog\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -6,8 +6,9 @@
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="~/Content/owncss/style.css" rel="stylesheet" />
 </head>
-<body>
-    <div id="all">
+<body>     
+    <div id="all" class="container">
+    <div class="container">
     <nav id="top">
         <div class="container">
             <div class="row">
@@ -41,37 +42,44 @@
             </div>
         </div>
     </nav>
-        <nav id="dhl" class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="~/Home/Index">首页<</a>
-                </div>
-                <div>
-                    <ul class="nav navbar-nav">                      
-                        <li><a href="~/Home/Entertainment">娱乐</a></li>
-                        <li><a href="#">体育</a></li>
-                        <li><a href="#">文史</a></li>
-                        <li><a href="#">女性</a></li>
-                        <li><a href="#">股票</a></li>
-                        <li><a href="#">教育</a></li>
-                        <li><a href="#">星座</a></li>
-                        <li><a href="#">美食</a></li>
-                        <li><a href="#">设计</a></li>
-                        <li><a href="#">育儿</a></li>
-                        <li><a href="#">旅游</a></li>
-                        <li><a href="#">收藏</a></li>
-                        <li><a href="#">时尚</a></li>
-                        <li><a href="#">图片</a></li>     
-                        <li><a href="#">悦博</a></li>  
-                        <li><a href="#">博客地址</a></li>                 
-                    </ul>
+     </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav id="dhl" class="navbar navbar-default" role="navigation">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <a class="navbar-brand" href="~/Home/Index">首页</a>
+                            </div>
+                            <div>
+                                <ul class="nav navbar-nav">
+                                    <li><a href="~/Home/Entertainment">娱乐</a></li>
+                                    <li><a href="#">体育</a></li>
+                                    <li><a href="#">文史</a></li>
+                                    <li><a href="#">女性</a></li>
+                                    <li><a href="#">股票</a></li>
+                                    <li><a href="#">教育</a></li>
+                                    <li><a href="#">星座</a></li>
+                                    <li><a href="#">美食</a></li>
+                                    <li><a href="#">设计</a></li>
+                                    <li><a href="#">育儿</a></li>
+                                    <li><a href="#">旅游</a></li>
+                                    <li><a href="#">收藏</a></li>
+                                    <li><a href="#">时尚</a></li>
+                                    <li><a href="#">图片</a></li>
+                                    <li><a href="#">悦博</a></li>
+                                    <li><a href="#">博客地址</a></li>                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
             </div>
-        </nav>
-    <div id="page-content" class="container">
-      <div>@RenderBody()</div>    
+            </div>
+          <div id="page-content" class="container">
+            <div class="col-md-12">@RenderBody()</div>
+        </div>
     </div>
-    </div>   
 </body>
 </html>
 
