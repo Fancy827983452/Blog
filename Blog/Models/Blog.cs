@@ -11,15 +11,14 @@ namespace Blog.Models
     {
         [Key]
         [DisplayName("博文ID")]
-        [Required]
-        public string BlogID { get; set; }
+        public int BlogID { get; set; }
 
         [DisplayName("博文标题")]
         [Required]
         public string BlogTitle { get; set; }
 
         [DisplayName("博文内容")]
-        [Required]
+        [DataType(DataType.MultilineText)]
         public string BlogContent { get; set; }
 
         [DisplayName("博文分类")]
@@ -30,10 +29,12 @@ namespace Blog.Models
 
         [DisplayName("创建时间")]
         [DataType(DataType.DateTime)]
-        public string CreateTime { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
+        public DateTime CreateTime { get; set; }
 
         [DisplayName("修改时间")]
         [DataType(DataType.DateTime)]
-        public string ModifyTime { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
+        public DateTime ModifyTime { get; set; }
     }
 }

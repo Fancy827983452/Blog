@@ -101,12 +101,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\owncss\style.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\UEditer\index.html" />
-    <Content Include="Content\UEditer\ueditor.all.js" />
-    <Content Include="Content\UEditer\ueditor.all.min.js" />
-    <Content Include="Content\UEditer\ueditor.config.js" />
-    <Content Include="Content\UEditer\ueditor.parse.js" />
-    <Content Include="Content\UEditer\ueditor.parse.min.js" />
+    <Content Include="Content\ueditor\index.html" />
+    <Content Include="Content\ueditor\ueditor.all.js" />
+    <Content Include="Content\ueditor\ueditor.all.min.js" />
+    <Content Include="Content\ueditor\ueditor.config.js" />
+    <Content Include="Content\ueditor\ueditor.parse.js" />
+    <Content Include="Content\ueditor\ueditor.parse.min.js" />
     <Content Include="File\1.jpg" />
     <Content Include="File\2.jpg" />
     <Content Include="File\3.jpg" />
@@ -164,11 +164,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\UEditer\asp\" />
-    <Folder Include="Content\UEditer\dialogs\" />
-    <Folder Include="Content\UEditer\lang\" />
-    <Folder Include="Content\UEditer\themes\" />
-    <Folder Include="Content\UEditer\third-party\" />
+    <Folder Include="Content\ueditor\dialogs\" />
+    <Folder Include="Content\ueditor\lang\" />
+    <Folder Include="Content\ueditor\net\" />
+    <Folder Include="Content\ueditor\themes\" />
+    <Folder Include="Content\ueditor\third-party\" />
     <Folder Include="Views\Blog\" />
   </ItemGroup>
   <PropertyGroup>
