@@ -13,10 +13,27 @@ namespace Blog.Controllers
         {
             return View();
         }
-        public ActionResult DeleteBlog()
+        public ActionResult ViewBlogs()
         {
             return View();
         }
-  
+
+        public ActionResult Lock()
+        {
+            return View();
+        }
+        public ActionResult UnLock()
+        {
+            return View();
+        }
+        public ActionResult DeleteBlogs()
+        {
+            return View();
+        }
+        public ActionResult RecommendBlogs()
+        {
+            return View();
+        }
+        
     }
 }

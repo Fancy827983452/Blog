@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="col-lg-3">
+        <ul class="list-group" id="ueserfunction">
+            <li class="list-group-item">
+                <a><img class="img-responsive" name="head" id="head" src="~/File/1.jpg" /></a>
+            </li>
+            <li class="list-group-item"><a href="~/Admin/ViewBlogs">查看博文</a></li>
+            <li class="list-group-item"><a href="~/Admin/Lock">用户锁定</a></li>
+            <li class="list-group-item"><a href="~/Admin/UnLock">用户解锁</a></li>
+            <li class="list-group-item"><a href="~/Admin/DeleteBlogs">删除博文</a></li>
+            <li class="list-group-item"><a href="~/Admin/RecommendBlogs">推荐博文</a></li>
+        </ul>
+    </div>
+    <div class="col-lg-8">
+        <div>@RenderBody()</div>
+    </div>
+</div>
