@@ -16,6 +16,11 @@ namespace Blog.Controllers
             return View();
         }
 
+        public ActionResult Write()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
