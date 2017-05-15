@@ -13,6 +13,11 @@ namespace Blog.Controllers
         {
             return View();
         }
+        public ActionResult ViewBlogs()
+        {
+            return View();
+        }
+
         public ActionResult Lock()
         {
             return View();
