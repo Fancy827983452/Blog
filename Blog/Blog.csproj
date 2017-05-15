@@ -518,6 +518,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\ueditor\net\upload\image\" />
+    <Folder Include="File\Images\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Blog\" />
   </ItemGroup>

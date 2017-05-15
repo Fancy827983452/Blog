@@ -11,20 +11,17 @@ namespace Blog.Models
     {
         [Key]
         [DisplayName("用户ID")]
-        [Required]
         public string UserID { get; set; }
 
         [DisplayName("用户名")]
-        [Required]
         public string UserName { get; set; }
 
         [DisplayName("密码")]
-        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [DisplayName("头像")]
-        public byte[] UserImage { get; set; }
+        public string UserImage { get; set; }
 
         [DisplayName("手机号")]
         public string PhoneNumber { get; set; }
