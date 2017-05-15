@@ -6,7 +6,7 @@
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="~/Content/owncss/style.css" rel="stylesheet" />
 </head>
-<body>     
+<body>    
     <div id="all" class="container">
     <div class="container">
     <nav id="top">
@@ -43,10 +43,11 @@
         </div>
     </nav>
      </div>
+       
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <nav id="dhl" class="navbar navbar-default" role="navigation">
+                    <nav id="dhl" class="navbar navbar-default navbar-static-top" role="navigation">
                         <div class="container-fluid">
                             <div class="navbar-header">
                                 <a class="navbar-brand" href="~/Home/Index">首页</a>
@@ -68,16 +69,18 @@
                                     <li><a href="#">时尚</a></li>
                                     <li><a href="#">图片</a></li>
                                     <li><a href="#">悦博</a></li>
-                                    <li><a href="#">博客地址</a></li>                                    
+                                    <li><a href="#">博客地址</a></li>
                                 </ul>
                             </div>
                         </div>
                     </nav>
                 </div>
             </div>
-            </div>
+        </div>
+
           <div id="page-content" class="container">
-            <div class="col-md-12">@RenderBody()</div>
+            <div class="col-md-12">@RenderBody()
+           </div>
         </div>
     </div>
 </body>

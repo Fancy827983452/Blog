@@ -20,7 +20,11 @@
         }
     </style>
 </head>
-<body>    
+<body> 
+    @using (Html.BeginForm("Write", "User", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="row">
     <div class="col-md-10 col-lg-offset-1" style="margin-top:3%">
         <div class="form-group">
@@ -30,12 +34,12 @@
         </div>
     <div class="form-group">
         <label for="textfield"><span style="font-size: large"> 标题</span>:</label>
-        <input name="textfield" type="text" id="textfield" class="form-control">
+        <input name="title" type="text" id="title" class="form-control">
     </div>
     <div class="form-group">
         <label for="select" style="font-size: large">分类:</label>
 
-        <select name="select" id="select" class="form-control">
+        <select name="classification" id="classification" class="form-control">
             <option>娱乐</option>
             <option>体育</option>
             <option>时尚</option>
@@ -169,6 +173,7 @@
     </script>
     </div>
           </div>
+    }
 </body>
 </html>
 

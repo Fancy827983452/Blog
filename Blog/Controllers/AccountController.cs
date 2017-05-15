@@ -55,6 +55,7 @@ namespace Blog.Controllers
                 }
             }
             return View();
+
         }
 
         public ActionResult Register()

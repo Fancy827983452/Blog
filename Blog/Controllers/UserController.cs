@@ -1,4 +1,5 @@
 ﻿using Blog.DatabaseContext;
+using Blog.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,20 +16,27 @@ namespace Blog.Controllers
         {
             return View();
         }
-
+        [HttpGet]
+        public ActionResult Write()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Write(Blog.Models.Blog BlogModel, FormCollection fc)
+        public ActionResult Write(FormCollection fc, Models.Blog blog)
         {
-            for (int i = 1; i < fc.AllKeys.Length-1; i++)
+            for (int i = 1; i < fc.AllKeys.Length; i++)
             {
                 string key = fc.GetKey(i);
                 string value = fc.Get(key);
                 if (value.Trim().Equals(""))
-                    return Content("<script>alert('博文标题不能为空，请重新输入！');window.open('" + Url.Content("~/User/Write") + "', '_self')</script>");
+                    return Content("<script>alert(‘输入框不能为空，请重新输入！');window.open('" + Url.Content("~/User/Write") + "', '_self')</script>");
             }
-            //String word_content = Request.("editor");
+            blog.BlogTitle = fc["title"];
+            blog.Classification = fc["classification"];
+            blog.BlogContent = "abc";
+            blog.BloggerID = Session[""];
             return View();
         }
         public ActionResult EditInfo()
