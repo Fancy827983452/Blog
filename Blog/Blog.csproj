@@ -427,6 +427,8 @@
     <Content Include="File\1.jpg" />
     <Content Include="File\2.jpg" />
     <Content Include="File\3.jpg" />
+    <Content Include="File\Images\0c462656a9d0ec7eeac4afbe.jpg" />
+    <Content Include="File\Images\4c01832e4d34787b1f30899b.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\Blog.csproj.FileListAbsolute.txt" />
@@ -518,7 +520,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\ueditor\net\upload\image\" />
-    <Folder Include="File\Images\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Blog\" />
   </ItemGroup>
