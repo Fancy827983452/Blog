@@ -113,6 +113,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Blog.dll" />
+    <Content Include="bin\Blog.pdb" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\owncss\style.css" />
@@ -166,6 +168,13 @@
     <Content Include="Views\User\Focus.cshtml" />
     <Content Include="Views\User\Message.cshtml" />
     <Content Include="Views\User\Write.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\DeleteBlogs.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Lock.cshtml" />
+    <Content Include="Views\Admin\RecommendBlogs.cshtml" />
+    <Content Include="Views\Admin\UnLock.cshtml" />
+    <Content Include="Views\Admin\ViewBlogs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -180,6 +189,7 @@
     <Folder Include="Content\ueditor\net\" />
     <Folder Include="Content\ueditor\themes\" />
     <Folder Include="Content\ueditor\third-party\" />
+    <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Blog\" />
   </ItemGroup>
   <PropertyGroup>
