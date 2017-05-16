@@ -508,6 +508,9 @@
     <Content Include="Views\Admin\RecommendBlogs.cshtml" />
     <Content Include="Views\Admin\UnLock.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\User\blogdetails.cshtml" />
+    <Content Include="Views\User\blogedit.cshtml" />
+    <Content Include="Views\User\hello.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

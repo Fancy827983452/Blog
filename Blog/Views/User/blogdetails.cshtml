@@ -1,0 +1,40 @@
+﻿
+@model Blog.Models.Blog
+
+
+@{
+    var models = Model;
+}
+  <div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Classification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Classification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogContent)
+        </dt>
+
+        <dd>
+            @Html.Raw(@models.BlogContent.ToString());
+        </dd>
+      </dl>  
+</div>
+<p>  
+    <a href="~/User/blogdelete/@models.BlogID">删除</a>
+    <a href="~/User/blogedit/@models.BlogID">修改</a>
+    @Html.ActionLink("Back to List", "Index")
+</p>

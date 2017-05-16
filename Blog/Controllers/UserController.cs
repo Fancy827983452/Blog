@@ -13,12 +13,22 @@ namespace Blog.Controllers
     {
         private BlogDbContext db = new BlogDbContext();
         // GET: User
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Index()//首页
         {
-            return View();
+            List<Models.Blog> models = db.Blogs.ToList();
+            if (models.Count != 0)
+            {
+                return View(models);
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
-        public ActionResult Write()
+        public ActionResult Write()//写博文
         {
             return View();
         }
@@ -26,17 +36,33 @@ namespace Blog.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Write(Models.Blog BlogModel, FormCollection fc)
+        public ActionResult Write(Models.Blog blog, FormCollection fc)
         {
-            for (int i = 1; i < fc.AllKeys.Length-1; i++)
+            for (int i = 1; i < fc.AllKeys.Length; i++)
             {
+
                 string key = fc.GetKey(i);
                 string value = fc.Get(key);
                 if (value.Trim().Equals(""))
-                    return Content("<script>alert('博文标题不能为空，请重新输入！');window.open('" + Url.Content("~/User/Write") + "', '_self')</script>");
+                    return Content("<script>alert('" + key + "不能为空，请重新输入！');window.open('" + Url.Content("~/User/Write") + "', '_self')</script>");
             }
-            //String word_content = Request.("editor");
-            return View();
+
+            try
+            {
+                blog.BlogTitle = fc["title"];
+                blog.BlogContent = fc["editor"];
+                blog.Classification = fc["classification"];
+                blog.BloggerID = Session["UserID"].ToString();
+                blog.CreateTime = DateTime.Now;
+                blog.ModifyTime = DateTime.Now;
+                db.Blogs.Add(blog);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return Content("<script>alert('输入好像有点问题！');window.open('" + Url.Content("~/User/Write") + "', '_self')</script>");
+            }
+            return Content("<script>alert('发表成功');window.open('" + Url.Content("~/User/Index") + "', '_self')</script>");
         }
         public ActionResult EditInfo()
         {
@@ -45,7 +71,7 @@ namespace Blog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditInfo([Bind(Include = "UserID,UserName,Password,UserImage,PhoneNumber,Identification")]UserAccount userAccountModel,FormCollection fc, HttpPostedFileBase file)
+        public ActionResult EditInfo([Bind(Include = "UserID,UserName,Password,UserImage,PhoneNumber,Identification")]UserAccount userAccountModel, FormCollection fc, HttpPostedFileBase file)
         {
             if (fc["username"].ToString().Trim().Equals(""))
                 return Content("<script>alert('标记为 * 的输入框不能为空，请重新输入！');window.open('" + Url.Content("~/User/EditInfo") + "', '_self')</script>");
@@ -69,7 +95,7 @@ namespace Blog.Controllers
                                 var fileName = Path.Combine(Request.MapPath("~/File/Images"), Path.GetFileName(file.FileName));
                                 file.SaveAs(fileName);  //把在电脑里面选择的图片保存在当前程序的File/Images文件目录下                   
                             }
-                            catch(Exception e)
+                            catch (Exception e)
                             {
                                 return Content("上传异常 ！", "text/plain");
                             }
@@ -128,5 +154,54 @@ namespace Blog.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult blogdetails(int id)//博文详情
+        {
+            Models.Blog blog = db.Blogs.Find(id);
+
+            return View(blog);
+        }
+        public ActionResult blogdelete(int id)//博文删除
+        {
+            Models.Blog blog = db.Blogs.Find(id);
+            db.Blogs.Remove(blog);
+            db.SaveChanges();
+            return Content("<script>alert('博文删除成功！');window.open('" + Url.Content("~/User/Index") + "', '_self')</script>");
+        }
+        [HttpGet]
+        public ActionResult blogedit(int id)//博文修改
+        {
+            Models.Blog blog = db.Blogs.Find(id);
+            return View(blog);
+        }
+        [HttpPost]
+        public ActionResult blogedit(Models.Blog blog, FormCollection fc,string Hidden1)
+        {
+            for (int i = 1; i < fc.AllKeys.Length; i++)
+            {
+
+                string key = fc.GetKey(i);
+                string value = fc.Get(key);
+                if (value.Trim().Equals(""))
+                    return Content("<script>alert('" + key + "不能为空，请重新输入！');window.open('" + Url.Content("~/User/Write") + "', '_self')</script>");
+            }
+            try
+            {
+                blog.BlogTitle = fc["title"];
+                blog.BlogContent = fc["editor"];
+                blog.Classification = fc["classification"];
+                blog.BloggerID = Session["UserID"].ToString();
+                blog.CreateTime =Convert.ToDateTime(Hidden1);
+                blog.ModifyTime = DateTime.Now;
+                db.Blogs.Add(blog);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return Content("<script>alert('输入好像有点问题！');window.open('" + Url.Content("~/User/Write") + "', '_self')</script>");
+            }
+            return Content("<script>alert('发表成功');window.open('" + Url.Content("~/User/Index") + "', '_self')</script>");
+        }
+        
     }
 }

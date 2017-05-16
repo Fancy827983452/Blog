@@ -20,49 +20,49 @@
         }
     </style>
 </head>
-<body> 
+<body>
     @using (Html.BeginForm("Write", "User", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="row">
-    <div class="col-md-10 col-lg-offset-1" style="margin-top:3%">
-        <div class="form-group">
-            <a href="~/User/Index">
-                <span class="glyphicon glyphicon-backward" style="font-size:large">返回</span>
-            </a>
-        </div>
-    <div class="form-group">
-        <label for="textfield"><span style="font-size: large"> 标题</span>:</label>
-        <input name="title" type="text" id="title" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="select" style="font-size: large">分类:</label>
+        <div class="row">
+            <div class="col-md-10 col-lg-offset-1" style="margin-top:3%">
+                <div class="form-group">
+                    <a href="~/User/Index">
+                        <span class="glyphicon glyphicon-backward" style="font-size:large">返回</span>
+                    </a>
+                </div>
+                <div class="form-group">
+                    <label for="textfield"><span style="font-size: large"> 标题</span>:</label>
+                    <input name="title" type="text" id="title" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="select" style="font-size: large">分类:</label>
 
-        <select name="classification" id="classification" class="form-control">
-            <option>娱乐</option>
-            <option>体育</option>
-            <option>时尚</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="textarea" style="font-size: large">
-            内容:
-        </label>
-        <textarea name="editor" id="editor" style="height:400px;"></textarea>
-    </div>
-        @*<div class="form-group">
-            <input id="Hidden1" type="hidden" name="content" value=""/>
-        </div>*@
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" style="width: 100%;" value="发表" />
-    </div>
-    <div class="form-group">
-        <input type="reset" name="reset" id="reset" value="清空" class="btn btn-primary" style="width: 100%;">
-    </div>
+                    <select name="classification" id="classification" class="form-control">
+                        <option>娱乐</option>
+                        <option>体育</option>
+                        <option>时尚</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="textarea" style="font-size: large">
+                        内容:
+                    </label>
+                    <textarea name="editor" id="editor" style="height:400px;"></textarea>
+                </div>
+                @*<div class="form-group">
+                        <input id="Hidden1" type="hidden" name="content" value=""/>
+                    </div>*@
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" style="width: 100%;" value="发表" />
+                </div>
+                <div class="form-group">
+                    <input type="reset" name="reset" id="reset" value="清空" class="btn btn-primary" style="width: 100%;">
+                </div>
 
 
-    <script type="text/javascript">
+                <script type="text/javascript">
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
     var ue = UE.getEditor('editor');
@@ -172,12 +172,12 @@
         UE.getEditor('editor').execCommand( "clearlocaldata" );
         alert("已清空草稿箱")
     }
-    function getContent() {         
-        document.getElementById("HiddenField").value = UE.getEditor('editor').getContent();       
+    function getContent() {
+        document.getElementById("HiddenField").value = UE.getEditor('editor').getContent();
     }
-    </script>
-    </div>
-          </div>
+                </script>
+            </div>
+        </div>
     }
 </body>
 </html>
