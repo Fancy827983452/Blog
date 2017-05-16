@@ -2,6 +2,7 @@
 using Blog.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -224,7 +225,9 @@ namespace Blog.Controllers
             return View(blog);
         }
         [HttpPost]
-        public ActionResult blogedit(Models.Blog blog, FormCollection fc,string Hidden1)
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult blogedit(FormCollection fc,int BlogID)
         {
             for (int i = 1; i < fc.AllKeys.Length; i++)
             {
@@ -232,24 +235,24 @@ namespace Blog.Controllers
                 string key = fc.GetKey(i);
                 string value = fc.Get(key);
                 if (value.Trim().Equals(""))
-                    return Content("<script>alert('" + key + "不能为空，请重新输入！');window.open('" + Url.Content("~/User/Write") + "', '_self')</script>");
+                    return Content("<script>alert('" + key + "不能为空，请重新输入！');window.open('" + Url.Content("~/User/blogedit?id="+BlogID+"") + "', '_self')</script>");
             }
             try
             {
-                blog.BlogTitle = fc["title"];
-                blog.BlogContent = fc["editor"];
-                blog.Classification = fc["classification"];
-                blog.BloggerID = Session["UserID"].ToString();
-                blog.CreateTime =Convert.ToDateTime(Hidden1);
-                blog.ModifyTime = DateTime.Now;
-                db.Blogs.Add(blog);
+                Models.Blog editblog = db.Blogs.Find(BlogID);
+                editblog.BlogTitle = fc["title"];
+                editblog.BlogContent = fc["editor"];
+                editblog.Classification = fc["classification"];
+                editblog.ModifyTime = DateTime.Now;
+                db.Entry(editblog).State = EntityState.Modified;
                 db.SaveChanges();
+                
             }
             catch (Exception e)
             {
-                return Content("<script>alert('输入好像有点问题！');window.open('" + Url.Content("~/User/Write") + "', '_self')</script>");
+                return Content("<script>alert('修改过程好像有点问题！');window.open('" + Url.Content("~/User/blogedit?id=" + BlogID + "") + "', '_self')</script>");
             }
-            return Content("<script>alert('发表成功');window.open('" + Url.Content("~/User/Index") + "', '_self')</script>");
+            return Content("<script>alert('修改成功');window.open('" + Url.Content("~/User/blogdetails?id=" + BlogID + "") + "', '_self')</script>");
         }
         
     }

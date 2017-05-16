@@ -1,10 +1,7 @@
-﻿@{
-    Layout = null;
+﻿ @{
+     Layout = null;
 }
-
-@{
-    var models = Model;
-}
+@model Blog.Models.Blog 
 <html>
 <head>
     <title>发表博文</title>
@@ -15,6 +12,7 @@
     <link href="~/Content/owncss/style.css" rel="stylesheet" />
     <script type="text/javascript" charset="gbk" src="~/Content/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="gbk" src="~/Content/ueditor/ueditor.all.js"> </script>
+    <script type="text/javascript" charset="gbk" src="~/Content/ueditor/ueditor.all.min.js"> </script>
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
     <script type="text/javascript" charset="gbk" src="~/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
@@ -25,59 +23,46 @@
     </style>
 </head>
 <body>
-    @using (Html.BeginForm("Write", "User", FormMethod.Post))
+    @using (Html.BeginForm("blogedit", "User", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
             <div class="col-md-10 col-lg-offset-1" style="margin-top:3%">
                 <div class="form-group">
-                    <a href="~/User/Index">
+                    <a href="~/User/blogdetails?id=@Model.BlogID">
                         <span class="glyphicon glyphicon-backward" style="font-size:large">返回</span>
                     </a>
                 </div>
                 <div class="form-group">
                     <label for="textfield"><span style="font-size: large"> 标题</span>:</label>
-                    <input name="title" type="text" id="title" class="form-control" value=@Model.BlogTitle />
+                    <input name="title" type="text" id="title" class="form-control" value=@Model.BlogTitle>
                 </div>
                 <div class="form-group">
                     <label for="select" style="font-size: large">分类:</label>
-                    <select name="classification" id="classification" class="form-control">
+
+                    <select name="classification" id="classification" class="form-control" onselect=@Model.Classification>
                         <option>娱乐</option>
                         <option>体育</option>
                         <option>时尚</option>
                     </select>
                 </div>
-                <script type="text/javascript">
-                    window.onload=function(){
-                        var optElements = document.getElementById("classification").children;
-                        var optValue=@Model.Classification;//这是已知的值
-                        for(var opt in optElements){
-                            if(optElements[opt].value==optValue){
-                                optElements[opt].selected="selected";
-                                return;
-                            }
-                        }
-                    }
-                </script>
-
-
                 <div class="form-group">
                     <label for="textarea" style="font-size: large">
                         内容:
                     </label>
-                    <textarea name="editor" id="editor" style="height:400px;" >@Model.BlogContent</textarea>
+                    <textarea name="editor" id="editor" style="height:400px;">@Model.BlogContent</textarea>
                 </div>
                 @*<div class="form-group">
                         <input id="Hidden1" type="hidden" name="content" value=""/>
                     </div>*@
                 <div class="form-group">
-                    <input type="submit" class="btn btn-primary" style="width: 100%;" value="发表" />
+                    <input type="submit" class="btn btn-primary" style="width: 100%;" value="修改" />
                 </div>
                 <div class="form-group">
                     <input type="reset" name="reset" id="reset" value="清空" class="btn btn-primary" style="width: 100%;">
                 </div>
-
+                <input name=BlogID type="hidden" value=@Model.BlogID />
 
                 <script type="text/javascript">
     //实例化编辑器
