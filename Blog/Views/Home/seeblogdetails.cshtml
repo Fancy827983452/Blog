@@ -1,0 +1,16 @@
+﻿@model Blog.Models.Blog  
+ 
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+<div class="container">
+    <div class="col-lg-3">                       
+      <a href="~/Home/seeuserdetails?id=@ViewData["BloggerID"]"><img class="img-responsive" name="head" id="head" src="~/File/Images/@ViewData["BloggerImage"]" /></a>     
+    </div>
+    <div class="col-md-8">
+          <div style="font-size:larger">@Model.BlogTitle</div>
+          <div>@Html.Raw(Model.BlogContent)</div>          
+    </div>
+</div>

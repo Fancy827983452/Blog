@@ -17,7 +17,8 @@ namespace Blog.Controllers
         [HttpGet]
         public ActionResult Index()//首页
         {
-            List<Models.Blog> models = db.Blogs.ToList();
+            String BloggerID = Session["UserID"].ToString();
+            List<Models.Blog> models = db.Blogs.Where(m=>m.BloggerID== BloggerID).ToList();
             if (models.Count != 0)
             {
                 return View(models);
