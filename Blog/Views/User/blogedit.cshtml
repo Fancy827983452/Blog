@@ -1,6 +1,10 @@
 ﻿@{
     Layout = null;
 }
+
+@{
+    var models = Model;
+}
 <html>
 <head>
     <title>发表博文</title>
@@ -34,22 +38,35 @@
                 </div>
                 <div class="form-group">
                     <label for="textfield"><span style="font-size: large"> 标题</span>:</label>
-                    <input name="title" type="text" id="title" class="form-control">
+                    <input name="title" type="text" id="title" class="form-control" value=@Model.BlogTitle />
                 </div>
                 <div class="form-group">
                     <label for="select" style="font-size: large">分类:</label>
-
                     <select name="classification" id="classification" class="form-control">
                         <option>娱乐</option>
                         <option>体育</option>
                         <option>时尚</option>
                     </select>
                 </div>
+                <script type="text/javascript">
+                    window.onload=function(){
+                        var optElements = document.getElementById("classification").children;
+                        var optValue=@Model.Classification;//这是已知的值
+                        for(var opt in optElements){
+                            if(optElements[opt].value==optValue){
+                                optElements[opt].selected="selected";
+                                return;
+                            }
+                        }
+                    }
+                </script>
+
+
                 <div class="form-group">
                     <label for="textarea" style="font-size: large">
                         内容:
                     </label>
-                    <textarea name="editor" id="editor" style="height:400px;"></textarea>
+                    <textarea name="editor" id="editor" style="height:400px;" >@Model.BlogContent</textarea>
                 </div>
                 @*<div class="form-group">
                         <input id="Hidden1" type="hidden" name="content" value=""/>

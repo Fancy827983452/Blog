@@ -64,6 +64,7 @@ namespace Blog.Controllers
             }
             return Content("<script>alert('发表成功');window.open('" + Url.Content("~/User/Index") + "', '_self')</script>");
         }
+
         public ActionResult EditInfo()
         {
             return View();
