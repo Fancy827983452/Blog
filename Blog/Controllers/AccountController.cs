@@ -39,6 +39,7 @@ namespace Blog.Controllers
                     {
                         if (u.Password == password)
                         {
+                            Session["UserID"] = u.UserID;
                             Session["UserName"] = u.UserName;
                             Session["Identification"] = u.Identification;
                             return Content("<script>alert('登录成功，欢迎回来！');window.open('" + Url.Content("~/Home/Index") + "', '_self')</script>");
@@ -98,6 +99,7 @@ namespace Blog.Controllers
                         //{
                         //    throw;
                         //}
+                        Session["UserID"] = userAccountModel.UserID;
                         Session["UserName"] = userAccountModel.UserName;
                         Session["Identification"] = userAccountModel.Identification;
                         return Content("<script>alert('注册成功！');window.open('" + Url.Content("~/Home/Index") + "', '_self')</script>");
