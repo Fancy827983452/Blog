@@ -501,13 +501,10 @@
     <Content Include="Views\User\Focus.cshtml" />
     <Content Include="Views\User\Message.cshtml" />
     <Content Include="Views\User\Write.cshtml" />
-    <Content Include="Views\Admin\DeleteBlog.cshtml" />
-    <Content Include="Views\Admin\DeleteBlogs.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Lock.cshtml" />
-    <Content Include="Views\Admin\RecommendBlogs.cshtml" />
-    <Content Include="Views\Admin\UnLock.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\ViewBlogs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
