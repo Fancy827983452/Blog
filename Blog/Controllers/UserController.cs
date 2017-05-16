@@ -98,6 +98,7 @@ namespace Blog.Controllers
                             catch (Exception e)
                             {
                                 return Content("上传异常 ！", "text/plain");
+                                //return Content("<script>alert('上传异常 ！');window.open('" + Url.Content("~/User/EditInfo") + "', '_self')</script>");
                             }
 
                             db.UserAccounts.Remove(userAccountModel);
@@ -113,11 +114,12 @@ namespace Blog.Controllers
 
                             Session["UserName"] = userAccountModel.UserName;
                             Session["PhoneNumber"] = userAccountModel.PhoneNumber;
+                            Session["UserImage"] = userAccountModel.UserImage;
                             Session["Identification"] = userAccountModel.Identification;
                             return Content("<script>alert('修改个人信息成功！');window.open('" + Url.Content("~/Home/Index") + "', '_self')</script>");
                         }
                         else
-                            return Content("没有文件！", "text/plain");
+                            return Content("<script>alert('没有文件！');window.open('" + Url.Content("~/User/EditInfo") + "', '_self')</script>");
                         #endregion 
                     }
                     else
@@ -140,6 +142,52 @@ namespace Blog.Controllers
         }
         public ActionResult EditPassword()
         {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPassword(UserAccount userAccountModel, FormCollection fc)
+        {
+            for (int i = 1; i < fc.AllKeys.Length; i++)
+            {
+                string key = fc.GetKey(i);
+                string value = fc.Get(key);
+                if (value.Trim().Equals(""))
+                    return Content("<script>alert('标记为 * 的输入框不能为空，请重新输入！');window.open('" + Url.Content("~/User/EditPassword") + "', '_self')</script>");
+            }
+            if (fc["password_new"].Equals(fc["password_new2"]))//两次输入密码一致
+            {
+                userAccountModel = db.UserAccounts.Find(Session["UserID"]);
+                string password = userAccountModel.Password;
+                if(fc["password_old"].Equals(password))//原密码输入正确
+                { 
+                    if (ModelState.IsValid)
+                    {
+                        db.UserAccounts.Remove(userAccountModel);
+                        db.SaveChanges();
+                        userAccountModel.UserID = Session["UserID"].ToString();
+                        userAccountModel.UserName = Session["UserName"].ToString();
+                        userAccountModel.Password = fc["password_new"];
+                        userAccountModel.UserImage = Session["UserImage"].ToString();
+                        userAccountModel.PhoneNumber = Session["PhoneNumber"].ToString();
+                        userAccountModel.Identification = "user";
+                        db.UserAccounts.Add(userAccountModel);
+                        db.SaveChanges();
+
+                        Session["UserID"] = userAccountModel.UserID;
+                        Session["UserName"] = userAccountModel.UserName;
+                        Session["Identification"] = userAccountModel.Identification;
+                        return Content("<script>alert('修改密码成功！');window.open('" + Url.Content("~/Home/Index") + "', '_self')</script>");
+                    }
+                }
+                else
+                    return Content("<script>alert('原密码输入错误！');window.open('" + Url.Content("~/User/EditPassword") + "', '_self')</script>");
+
+            }
+            else
+                return Content("<script>alert('两次输入的密码不一致！');window.open('" + Url.Content("~/User/EditPassword") + "', '_self')</script>");
+
             return View();
         }
         public ActionResult Focus()
