@@ -35,5 +35,13 @@ namespace Blog.Controllers
 
             return View(user);
         }
+        public ActionResult WriteMessage()
+        {
+            return View();
+        }
+        public ActionResult SendPrivateMessage()
+        {
+            return View();
+        }
     }
 }
