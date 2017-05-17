@@ -38,9 +38,30 @@ namespace Blog.Controllers
         {
             return View();
         }
-        public ActionResult DeleteBlogs()
+        public ActionResult DeleteBlogs(int BlogID, FormCollection form)
         {
-            return View();
+            //var SelectedValue = from x in form.AllKeys
+            //                    where form[x] != "false"
+            //                    select x;//找到你在视图中选定的要删除的数据
+            //foreach (var id in SelectedValue)
+            //{
+            //    if (id != "selectAll")
+            //    {
+            //        int number = int.Parse(id);
+            //        var deleteData = db.Blogs.First(m => m.employeeNumber == number);//找到要删除的数据
+            //        db.Blogs.DeleteObject(deleteData);
+
+            //    }
+            //    continue;
+            //}
+            //db.SaveChanges();
+
+
+            Models.Blog blog = db.Blogs.Find(BlogID);
+            db.Blogs.Remove(blog);
+            db.SaveChanges();
+            return Content("<script>alert('博文删除成功！');window.open('" + Url.Content("~/User/Index") + "', '_self')</script>");
+
         }
         public ActionResult RecommendBlogs()
         {
