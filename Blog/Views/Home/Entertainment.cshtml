@@ -1,11 +1,27 @@
-﻿ <div class="container">
+﻿@{
+    var models = Model;
+}
+<div class="container">
      <div class="row">
          
      <div class="col-md-7">
          <p class="more">Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan.Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non.ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan</p>
      </div>
      <div class="col-md-5">
-         <p class="more">Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan.Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non.ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan</p>
+         <table>
+         @if (models!= null)
+         {
+
+             foreach (var b in models)
+             {
+                <tr>
+                    <td style="font-size:large;"><p>@b.BlogTitle</p></td>
+                    <td style="font-size:large; float:right"> <a class="glyphicon glyphicon-chevron-right" href="~/Home/seeblogdetails?BlogID=@b.BlogID">查看详情</a></td>
+                </tr>
+
+             }
+         }
+         </table>
       </div>
      </div>
      </div>

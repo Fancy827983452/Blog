@@ -424,14 +424,11 @@
     <Content Include="Content\ueditor\ueditor.config.js" />
     <Content Include="Content\ueditor\ueditor.parse.js" />
     <Content Include="Content\ueditor\ueditor.parse.min.js" />
+    <Content Include="File\03.jpg" />
     <Content Include="File\1.jpg" />
+    <Content Include="File\1_120417102159_1.jpg" />
     <Content Include="File\2.jpg" />
     <Content Include="File\3.jpg" />
-    <Content Include="File\bg1.jpg" />
-    <Content Include="File\bg4.jpg" />
-    <Content Include="File\Images\0c462656a9d0ec7eeac4afbe.jpg" />
-    <Content Include="File\Images\1408972796248.jpeg" />
-    <Content Include="File\Images\4c01832e4d34787b1f30899b.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\Blog.csproj.FileListAbsolute.txt" />
@@ -506,11 +503,18 @@
     <Content Include="Views\User\Focus.cshtml" />
     <Content Include="Views\User\Message.cshtml" />
     <Content Include="Views\User\Write.cshtml" />
+    <Content Include="Views\Admin\DeleteBlog.cshtml" />
+    <Content Include="Views\Admin\DeleteBlogs.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Lock.cshtml" />
+    <Content Include="Views\Admin\RecommendBlogs.cshtml" />
+    <Content Include="Views\Admin\UnLock.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\Admin\ViewBlogs.cshtml" />
-    <Content Include="Views\Blog\BlogsInformation.cshtml" />
+    <Content Include="Views\User\blogdetails.cshtml" />
+    <Content Include="Views\User\blogedit.cshtml" />
+    <Content Include="Views\User\hello.cshtml" />
+    <Content Include="Views\Home\seeblogdetails.cshtml" />
+    <Content Include="Views\Home\seeuserdetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -521,7 +525,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\ueditor\net\upload\image\" />
+    <Folder Include="File\Images\" />
     <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Views\Blog\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

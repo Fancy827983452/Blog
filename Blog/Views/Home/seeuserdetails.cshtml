@@ -1,0 +1,124 @@
+﻿ 
+@model Blog.Models.UserAccount
+ @{
+        var blogs = ViewBag.blogs;
+    }
+
+ 
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="~/Content/owncss/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="header">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 logo-div">
+                        <div class="logo-inner text-center">
+                            <div class="logo-name">
+                                <a href="index.html">
+                                    <img src="~/File/Images/@Model.UserImage" class="img-circle img-responsive" />                                  
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-8 header-text-top " id="about">
+                        <h1>Nice responsive template for blogger.</h1>
+                        This blogging template use bootstrap and html to create a very nice blogging page with great responsive. <br />
+                        Here you can write a general notes about your blog.<br />
+                        <h2><strong>Who I am ? </strong></h2>
+                        <i>I am Jhon Deo </i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END HEADER SECTION-->
+    <div class="info-sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    hello <strong>i am @Model.UserName</strong> 
+                </div>
+                <div class="col-md-2">
+                    <div class="social-link">
+                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-facebook fa-2x"></i></a>
+                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-linkedin fa-2x"></i></a>
+                        <a href="#" class="btn btn-default btn-xs"><i class="fa fa-google-plus fa-2x"></i></a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-8 ">
+                <h2>This is all the Blogs i have writen</h2>
+                <div class="blog-post">                
+                    @if (blogs != null)
+                    {
+                        foreach (var blog in blogs)
+                        {
+                            <div class="blog-post">                                 
+                                <h4>Posted by @blog.ModifyTime</h4>
+                                <p>
+                                    @blog.BlogTitle
+                                </p>
+                                <a href="~/Home/seeblogdetails?BlogID=@blog.BlogID" class="btn btn-default btn-lg ">Read More<i class="fa fa-angle-right"></i></a>
+                            </div>
+
+                        }
+                    }
+                   </div>  
+                <br />
+                @*<nav>
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>*@
+            </div>
+            @*<div class="col-md-1"></div>
+            <div class="col-md-3" style="padding-top: 30px;">
+               
+                <div class="row">
+                    <h3>Advertising</h3>
+
+
+                </div>
+            </div>*@
+
+        </div>
+
+
+    </div>
+
+    <!--END HOME PAGE SECTION-->
+    
+</body>
+</html>
