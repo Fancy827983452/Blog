@@ -5,43 +5,165 @@
 @{
     var models =Model;
 }
+
 <!DOCTYPE html>
 
-<html>
+<html id="mypager">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title></title>
 </head>
 <body>
-    <div>
-        <h3>博文目录</h3>
-        <hr style="border:1px gray solid;" />
+    <form name="form1">
         <div>
-            @if (models!= null)
-            {
+            <h3>博文目录</h3>
+            <hr style="border:1px gray solid;" />
+            <div>
+                @if (models!= null)
+                {
                 foreach (var b in models)
                 {
-                    <div class="checkbox">
-                        <a href="~/UserBlog/seeblogdetails?BlogID=@b.BlogID"><input type="checkbox" value=@b.BlogID>@b.BlogTitle</a>
-                    </div>
+                <div class="checkbox">
+                    <a href="~/UserBlog/seeblogdetails?BlogID=@b.BlogID"><input name="check" type="checkbox" value=@b.BlogID>@b.BlogTitle</a>
+                </div>
                 }
-            }
+                }
+            </div>
+
+            @*<div align="center">
+                <ul class="pagination">
+                    <li><a href="#">&laquo;</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </div>*@
+
+            <script type="text/javascript">
+            /**************************************************************************************************************/
+            /***************************************************分页插件*************************************************/
+            /*
+            *参数说明
+            *options.recordCount 总数
+            *options.pageSize  每页大小
+            *options.pagenumber  当前页数
+            *options.customerText 是否自定义文本，默认不显示
+            *options.buttonClickCallback 分页的回调函数
+            * 用法 ：*/
+            $("#mypager").pager({ pagenumber: pageclickednumber, recordCount: recordCount, pageSize: pageSize,cKey:value, buttonClickCallback: PageClick})
+
+            ; (function ($) {
+                $.fn.pager = function (options) {
+                    var opts = $.extend({}, $.fn.pager.defaults, options);
+                    var pagecount = GetPageCount(parseInt(opts.recordCount), parseInt(opts.pageSize));
+                    opts.pagecount = pagecount;
+                    $(this).empty();
+                    $(this).append(renderpager(parseInt(opts.pagenumber), pagecount, parseInt(opts.pageSize), parseInt(opts.recordCount), opts.customerText, opts.buttonClickCallback));
+
+                    if (opts.buttonClickCallback != undefined && opts.buttonClickCallback != null) {
+                        $(".pager_items").children("li").click(function () {
+                            var data = $(this).attr("data");
+                            if (data > 0) {
+                                opts.buttonClickCallback(data, opts.pageSize);
+                            }
+                        });
+
+                        $(".pageselectpage").change(function () {
+                            var size = $(this).val();
+                            opts.buttonClickCallback(1, size);
+                        });
+                    }
+                };
+
+                //获得总页数
+                function GetPageCount(recordCount, pageSize) {
+                    if (recordCount <= 0) return 1;
+                    if (recordCount % pageSize == 0)
+                        return parseInt(recordCount / pageSize);
+                    else
+                        return parseInt(recordCount / pageSize) + 1;
+                }
+                //pagenumber
+                function renderpager(pagenumber, pagecount, pageSize, recordCount, customerText, buttonClickCallback) {
+                    var items = [1, 2, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+                    var $pager = "";
+                    $pager += "<div class=\"paget\">";
+                    //$pager += "<div class=\"dataTables_info\">当前页 " + pagenumber + " / " + pagecount + "&nbsp; 共 " + recordCount + " 行 ,每页";
+                    $pager += "<div class=\"dataTables_info\">共 " + recordCount + " 行 ,每页";
+                    $pager += "<select class=\"input-small pageselectpage\" style='width:60px;'>";
+
+                    for (var i = 0; i < items.length; i++) {
+                        if (items[i] == pageSize) {
+                            $pager += "<option selected=\"selected\" value=\"" + items[i] + "\">" + items[i] + "</option>";
+                        } else {
+                            $pager += "<option value=\"" + items[i] + "\">" + items[i] + "</option>";
+                        }
+                    }
+                    $pager += "</select>行</div>";
+                    $pager += "</div>";
+                    $pager += "<div class=\"pagen\">";
+                    $pager += "<div class=\"dataTables_paginate paging_bootstrap pagination\">";
+                    $pager += "<ul class='pager_items'>";
+
+                    if (pagenumber <= 1) {
+                        $pager += "<li class=\"prev disabled\" data=\"1\"><a href=\"javascript:void(0)\">首页</a></li>";
+                    } else {
+                        $pager += "<li class=\"prev\" data=\"1\"><a href=\"javascript:void(0)\">首页</a></li>";
+                    }
+
+                    var start = pagenumber - 3;
+                    start = start <= 1 ? 1 : start;
+                    if (start > 1) {
+                        $pager += "<li data=\"0\"><a href=\"javascript:void(0)\">...</a></li>";
+                    }
+                    for (var i = start; i < pagenumber; i++) {
+                        $pager += "<li data=\"" + i + "\"><a href=\"javascript:void(0)\">" + i + "</a></li>";
+                    }
+                    $pager += "<li class=\"active\" data=\"" + pagenumber + "\"><a href=\"javascript:void(0)\">" + pagenumber + "</a></li>";
+
+                    var end = pagenumber + 3;
+                    end = end >= pagecount ? pagecount : end;
+
+                    for (var i = pagenumber + 1; i <= end; i++) {
+                        $pager += "<li data=\"" + i + "\"><a href=\"javascript:void(0)\">" + i + "</a></li>";
+                    }
+                    if (pagecount > end) {
+                        $pager += "<li data=\"0\"><a href=\"javascript:void(0)\">...</a></li>";
+                    }
+
+                    if (pagenumber >= pagecount) {
+                        $pager += "<li class=\"next disabled\" data=\"" + pagecount + "\"><a href=\"javascript:void(0)\">尾页</a></li>";
+                    } else {
+                        $pager += "<li class=\"next\" data=\"" + pagecount + "\"><a href=\"javascript:void(0)\">尾页</a></li>";
+                    }
+                    $pager += "</ul>";
+                    $pager += "</div>";
+                    $pager += "</div>";
+                    return $pager;
+                }
+
+
+                function GetPageNum() {
+                    alert("请输入要跳转的页码！");
+                }
+
+                $.fn.pager.defaults = {
+                    pagenumber: 1,
+                    pagecount: 1,
+                    recordCount: 100,
+                    pageSize: 10
+                };
+            })(jQuery);
+            </script>
+
+            <div align="center">
+                <button type="button" class="btn btn-default"><a href="~/Admin/DeleteBlogs?BlogID=@Model.BlogID">删除</a></button>
+                <button type="button" class="btn btn-default">推荐</button>
+            </div>
         </div>
-        <div align="center">
-            <ul class="pagination">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
-            </ul>
-        </div>
-        <div align="center">
-            <button type="button" class="btn btn-default">删除</button>
-            <button type="button" class="btn btn-default">推荐</button>
-        </div>
-    </div>
+    </form>
 </body>
 </html>
