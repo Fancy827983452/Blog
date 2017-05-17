@@ -67,8 +67,12 @@ namespace Blog.Controllers
             return Content("<script>alert('发表成功');window.open('" + Url.Content("~/User/Index") + "', '_self')</script>");
         }
 
-        public ActionResult EditInfo()
+        public ActionResult EditInfo(FormCollection fc)
         {
+            if (@Session["PhoneNumber"] != null)
+                fc["tel"] = @Session["PhoneNumber"].ToString();
+            if (@Session["UserImage"] != null)
+                fc["file"] = @Session["UserImage"].ToString();
             return View();
         }
 
@@ -82,7 +86,7 @@ namespace Blog.Controllers
             {
                 //this.TryUpdateModel<UserAccount>(userAccountModel);
                 var name = db.UserAccounts.Where(m => m.UserName == userAccountModel.UserName);
-                if (name.Count() > 0)
+                if (name.Count() > 1)
                     return Content("<script>alert('该用户昵称已存在！');window.open('" + Url.Content("~/User/EditInfo") + "', '_self')</script>");
                 else
                 {
