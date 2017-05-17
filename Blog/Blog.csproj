@@ -429,6 +429,8 @@
     <Content Include="File\1_120417102159_1.jpg" />
     <Content Include="File\2.jpg" />
     <Content Include="File\3.jpg" />
+    <Content Include="File\bg1.jpg" />
+    <Content Include="File\bg4.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\Blog.csproj.FileListAbsolute.txt" />
@@ -504,19 +506,15 @@
     <Content Include="Views\User\Focus.cshtml" />
     <Content Include="Views\User\Message.cshtml" />
     <Content Include="Views\User\Write.cshtml" />
-    <Content Include="Views\Admin\DeleteBlog.cshtml" />
-    <Content Include="Views\Admin\DeleteBlogs.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Lock.cshtml" />
-    <Content Include="Views\Admin\RecommendBlogs.cshtml" />
-    <Content Include="Views\Admin\UnLock.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\User\blogdetails.cshtml" />
     <Content Include="Views\User\blogedit.cshtml" />
     <Content Include="Views\User\hello.cshtml" />
     <Content Include="Views\Home\FirstPage.cshtml" />
-    <Content Include="Views\UserBlog\seeuserdetails.cshtml" />
     <Content Include="Views\UserBlog\seeblogdetails.cshtml" />
+    <Content Include="Views\UserBlog\seeuserdetails.cshtml" />
     <Content Include="Views\Admin\ViewBlogs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
