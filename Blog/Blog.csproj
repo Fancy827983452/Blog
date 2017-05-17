@@ -429,6 +429,8 @@
     <Content Include="File\1_120417102159_1.jpg" />
     <Content Include="File\2.jpg" />
     <Content Include="File\3.jpg" />
+    <Content Include="File\bg1.jpg" />
+    <Content Include="File\bg4.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\Blog.csproj.FileListAbsolute.txt" />
@@ -515,6 +517,7 @@
     <Content Include="Views\User\hello.cshtml" />
     <Content Include="Views\Home\seeblogdetails.cshtml" />
     <Content Include="Views\Home\seeuserdetails.cshtml" />
+    <Content Include="Views\Blog\BlogsInformation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -527,7 +530,6 @@
     <Folder Include="Content\ueditor\net\upload\image\" />
     <Folder Include="File\Images\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Views\Blog\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
