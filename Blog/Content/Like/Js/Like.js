@@ -4,6 +4,8 @@
         var text_box = $("#add-num");
         var praise_txt = $("#praise-txt");
         var num = parseInt(praise_txt.text());
+        if (num == NaN)
+            num = 0;
         if (praise_img.attr("src") == ("~/Content/Like/Images/yizan.png")) {
             $(this).html("<img src='~/Content/Like/Images/zan.png' id='praise-img' class='animation' />");
             praise_txt.removeClass("hover");
