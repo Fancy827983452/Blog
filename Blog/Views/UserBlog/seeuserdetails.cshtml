@@ -1,10 +1,10 @@
-﻿ 
+﻿
 @model Blog.Models.UserAccount
- @{
-        var blogs = ViewBag.blogs;
-    }
+@{
+    var blogs = ViewBag.blogs;
+}
 
- 
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -14,6 +14,8 @@
     <link href="~/Content/owncss/style.css" rel="stylesheet" />
 </head>
 <body>
+    @if (Model != null)
+    {
     <div id="header">
         <div class="overlay">
             <div class="container">
@@ -22,7 +24,7 @@
                         <div class="logo-inner text-center">
                             <div class="logo-name">
                                 <a href="index.html">
-                                    <img src="~/File/Images/@Model.UserImage" class="img-circle img-responsive" />                                  
+                                    <img src="~/File/Images/@Model.UserImage" class="img-circle img-responsive" />
                                 </a>
                             </div>
 
@@ -45,7 +47,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10">
-                    hello <strong>i am @Model.UserName</strong> 
+                    hello <strong>i am @Model.UserName</strong>
                 </div>
                 <div class="col-md-2">
                     <div class="social-link">
@@ -59,59 +61,59 @@
             </div>
         </div>
     </div>
-    
+
     <div class="container">
 
         <div class="row">
 
             <div class="col-md-8 ">
                 <h2>This is all the Blogs i have writen</h2>
-                <div class="blog-post">                
+                <div class="blog-post">
                     @if (blogs != null)
                     {
                         foreach (var blog in blogs)
                         {
-                            <div class="blog-post">                                 
+                            <div class="blog-post">
                                 <h4>Posted by @blog.ModifyTime</h4>
                                 <p>
                                     @blog.BlogTitle
                                 </p>
-                                <a href="~/Home/seeblogdetails?BlogID=@blog.BlogID" class="btn btn-default btn-lg ">Read More<i class="fa fa-angle-right"></i></a>
+                                <a href="~/UserBlog/seeblogdetails?BlogID=@blog.BlogID" class="btn btn-default btn-lg ">Read More<i class="fa fa-angle-right"></i></a>
                             </div>
 
                         }
                     }
-                   </div>  
+                </div>
                 <br />
                 @*<nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>*@
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li>
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>*@
             </div>
             @*<div class="col-md-1"></div>
-            <div class="col-md-3" style="padding-top: 30px;">
-               
-                <div class="row">
-                    <h3>Advertising</h3>
+                <div class="col-md-3" style="padding-top: 30px;">
+
+                    <div class="row">
+                        <h3>Advertising</h3>
 
 
-                </div>
-            </div>*@
+                    </div>
+                </div>*@
 
         </div>
 
@@ -119,6 +121,6 @@
     </div>
 
     <!--END HOME PAGE SECTION-->
-    
+    }
 </body>
 </html>

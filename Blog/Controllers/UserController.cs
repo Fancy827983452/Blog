@@ -206,23 +206,23 @@ namespace Blog.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult blogdetails(int id)//博文详情
+        public ActionResult blogdetails(int BlogID)//博文详情
         {
-            Models.Blog blog = db.Blogs.Find(id);
+            Models.Blog blog = db.Blogs.Find(BlogID);
 
             return View(blog);
         }
-        public ActionResult blogdelete(int id)//博文删除
+        public ActionResult blogdelete(int BlogID)//博文删除
         {
-            Models.Blog blog = db.Blogs.Find(id);
+            Models.Blog blog = db.Blogs.Find(BlogID);
             db.Blogs.Remove(blog);
             db.SaveChanges();
             return Content("<script>alert('博文删除成功！');window.open('" + Url.Content("~/User/Index") + "', '_self')</script>");
         }
         [HttpGet]
-        public ActionResult blogedit(int id)//博文修改
+        public ActionResult blogedit(int BlogID)//博文修改
         {
-            Models.Blog blog = db.Blogs.Find(id);
+            Models.Blog blog = db.Blogs.Find(BlogID);
             return View(blog);
         }
         [HttpPost]
@@ -236,7 +236,7 @@ namespace Blog.Controllers
                 string key = fc.GetKey(i);
                 string value = fc.Get(key);
                 if (value.Trim().Equals(""))
-                    return Content("<script>alert('" + key + "不能为空，请重新输入！');window.open('" + Url.Content("~/User/blogedit?id="+BlogID+"") + "', '_self')</script>");
+                    return Content("<script>alert('" + key + "不能为空，请重新输入！');window.open('" + Url.Content("~/User/blogedit?BlogID=" + BlogID+"") + "', '_self')</script>");
             }
             try
             {
@@ -251,9 +251,9 @@ namespace Blog.Controllers
             }
             catch (Exception e)
             {
-                return Content("<script>alert('修改过程好像有点问题！');window.open('" + Url.Content("~/User/blogedit?id=" + BlogID + "") + "', '_self')</script>");
+                return Content("<script>alert('修改过程好像有点问题！');window.open('" + Url.Content("~/User/blogedit?BlogID=" + BlogID + "") + "', '_self')</script>");
             }
-            return Content("<script>alert('修改成功');window.open('" + Url.Content("~/User/blogdetails?id=" + BlogID + "") + "', '_self')</script>");
+            return Content("<script>alert('修改成功');window.open('" + Url.Content("~/User/blogdetails?BlogID=" + BlogID + "") + "', '_self')</script>");
         }
         
     }
