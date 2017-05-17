@@ -15,11 +15,51 @@
     </div>
     <div class="container">
         <div class="col-lg-3">
-            <a href="~/UserBlog/seeuserdetails?BloggerID=@ViewData["BloggerID"]"><img class="img-responsive" id="head" name="head" src="~/File/Images/@ViewData["BloggerImage"]" /></a>
+            <ul class="list-group" id="ueserfunction">
+                <li class="list-group-item">
+                    <a href="~/UserBlog/seeuserdetails?BloggerID=@ViewData["BloggerID"]"><img class="img-responsive" id="head" name="head" src="~/File/Images/@ViewData["BloggerImage"]" /></a>
+                </li>
+                <li class="list-group-item">用户名</li>
+                <li class="list-group-item"><button type="button" class="btn btn-default btn-sm">加关注</button>
+                <button type="button" class="btn btn-default btn-sm">写留言</button>
+                <button type="button" class="btn btn-default btn-sm">发私信</button></li>
+                @*<li class="list-group-item"></li>
+                <li class="list-group-item"></li>*@    
+                <li class="list-group-item">点赞数</li>
+                <li class="list-group-item">粉丝数</li>
+                <li class="list-group-item">留言数</li>
+             </ul>
         </div>
+
         <div class="col-md-8">
-            <div style="font-size:larger">@Model.BlogTitle</div>
-            <div>@Html.Raw(Model.BlogContent)</div>
+            <form role="form">
+                <div class="form-group">
+                    <div style="font-size:larger"><h3>@Model.BlogTitle</h3></div>
+                </div>
+            </form>
+            <br/>
+            <form role="form">
+                <div class="form-group">
+                    <div>@Html.Raw(Model.BlogContent)</div>
+                </div>
+            </form>
+            <br/><br /><br />
+            <div>
+                <label for="name">评论：</label>
+                <!-- 显示所有评论 -->
+            </div>
+            <br />
+            <div>
+                <form role="form">
+                    <div class="form-group">
+                        <label for="name">写评论：</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <div align="right">
+                        <button type="button" class="btn btn-default">发表</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
