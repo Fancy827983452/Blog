@@ -517,6 +517,7 @@
     <Content Include="Views\Home\FirstPage.cshtml" />
     <Content Include="Views\UserBlog\seeuserdetails.cshtml" />
     <Content Include="Views\UserBlog\seeblogdetails.cshtml" />
+    <Content Include="Views\Admin\ViewBlogs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

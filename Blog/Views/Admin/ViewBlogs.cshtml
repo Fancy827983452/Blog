@@ -2,6 +2,9 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+@{
+    var models =Model;
+}
 <!DOCTYPE html>
 
 <html>
@@ -11,13 +14,18 @@
 </head>
 <body>
     <div>
+        <h3>博文目录</h3>
+        <hr style="border:1px gray solid;" />
         <div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="">选项 1</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="">选项 2</label>
-            </div>
+            @if (models!= null)
+            {
+                foreach (var b in models)
+                {
+                    <div class="checkbox">
+                        <a href="~/UserBlog/seeblogdetails?BlogID=@b.BlogID"><input type="checkbox" value=@b.BlogID>@b.BlogTitle</a>
+                    </div>
+                }
+            }
         </div>
         <div align="center">
             <ul class="pagination">
