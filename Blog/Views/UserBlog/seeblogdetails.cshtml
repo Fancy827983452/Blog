@@ -31,7 +31,7 @@
                     <li class="list-group-item">
                         <a href="~/UserBlog/seeuserdetails?BloggerID=@ViewData["BloggerID"]"><img class="img-responsive" id="head" name="head" src="~/File/Images/@ViewData["BloggerImage"]" /></a>
                     </li>
-                    <li class="list-group-item">用户名: @Model.BloggerID</li>
+                    <li class="list-group-item">用户名</li>
                     <li class="list-group-item">
                         <button type="button" class="btn btn-default btn-sm">加关注</button>
                         <button type="button" class="btn btn-default btn-sm">写留言</button>
@@ -56,28 +56,7 @@
                     </div>
                 </form>
 
-                @*<div class="praise">
-                    <span id="praise"><img src="~/Content/Like/Images/zan.png" id="praise-img" /></span>
-                    <span id="praise-txt">45</span>
-                    <span id="add-num"><em>+1</em></span>
-                </div>*@
-
                 <a href="~/UserBlog/Like?BlogID=@Model.BlogID">点赞</a>
-
-                @*<script type="text/javascript">
-                    function BtnClick() {
-
-                        //注意这一行，是针对的，后台Action中没有设置页面缓存机制的情况的。随机产生一个数就是，为了让页面加载的时候不在缓存中读。
-                        //$('#quote').load('/home/quote/' + Math.random());
-                        $('#like').map('~/UserBlog/Like?BlogID=@Model.BlogID');
-
-                    }
-                </script>*@
-                @*<span id="praise"><img src="~/Content/Like/Images/zan.png" id="praise-img" onclick="BtnClick()" /></span>*@
-                @*<input type="button" onclick="BtnClick()" value="点赞">
-                <div id="like">
-                </div>*@
-
 
                 <div class="content">
                     <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下">打赏</a></p>
