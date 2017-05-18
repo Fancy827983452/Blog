@@ -1,0 +1,18 @@
+﻿ @using (Html.BeginForm("comment", "UserBlog", FormMethod.Post))
+ {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <form role="form">
+        <div class="form-group">
+            <label for="name">写评论：</label>
+            <textarea class="form-control" rows="3" name="commentcontent"></textarea>
+        </div>
+        <div align="right">           
+            <button type="submit" class="btn btn-default">发表</button>  
+            <input id="Hidden1" name="BlogID" type="hidden" value=@ViewData["BlogID"]>  @*传给post页面的两个重要的参数*@
+             <input id="Hidden1" name="ReplyID" type="hidden" value=@ViewData["ReplyID"]>      
+        </div>
+    </form>
+
+ }
+
