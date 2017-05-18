@@ -165,8 +165,6 @@
     <Content Include="Content\Reward\img\close.jpg" />
     <Content Include="Content\Reward\img\code-bg.jpg" />
     <Content Include="Content\Reward\img\cy-reward-title-bg.jpg" />
-    <Content Include="Content\Reward\img\radio1.jpg" />
-    <Content Include="Content\Reward\img\radio2.jpg" />
     <Content Include="Content\Reward\img\wechat.jpg" />
     <Content Include="Content\Reward\img\weipayimg.jpg" />
     <Content Include="Content\Reward\js\jquery-1.8.3.min.js" />

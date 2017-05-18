@@ -96,7 +96,7 @@ namespace Blog.Controllers
                 like.UserID = Session["UserID"].ToString();
                 db.Likes.Add(like);
                 db.SaveChanges();
-                return Content("<script>alert('点赞成功！');window.open('" + Url.Content("~/UserBlog/seeblogdetails?BlogID=" + BlogID + "") + "', '_self')</script>");
+                return Content("<script>window.open('" + Url.Content("~/UserBlog/seeblogdetails?BlogID=" + BlogID + "") + "', '_self')</script>");
             }
             else {//用户已经赞过需要取消赞
                 foreach (Models.Like h in likes)
@@ -104,7 +104,7 @@ namespace Blog.Controllers
                     db.Likes.Remove(h);
                 }
                 db.SaveChanges();
-                return Content("<script>alert('取消赞成功！');window.open('" + Url.Content("~/UserBlog/seeblogdetails?BlogID=" + BlogID + "") + "', '_self')</script>");
+                return Content("<script>window.open('" + Url.Content("~/UserBlog/seeblogdetails?BlogID=" + BlogID + "") + "', '_self')</script>");
             }
        
         }
