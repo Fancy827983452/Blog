@@ -9,44 +9,55 @@
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="~/Content/owncss/style.css" rel="stylesheet" />
     </head>
-<body>
-@using (Html.BeginForm("Register", "Account", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<body style="background:url('../../File/bg1.jpg') no-repeat center fixed;background-size:100% 100%">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <span style="font-size:large;font-family:Cambria;padding-left:30px">Welcome to Y-3 Blog</span>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="~/Account/SignIn"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                <li><a href="~/Account/Register"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+            </ul>
+        </div>
+    </nav>
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-horizontal" style="width: 35%;margin: 50px auto;">
-        <div class="form-group">
-            <label for="userID">用户ID</label>
-            <input class="form-control" placeholder="博客登录账号" name="userID" type="text">
-            <p style="color:red">*</p>
-        </div>
-        <div class="form-group">
-            <label for="userName">用户昵称</label>
-            <input class="form-control" placeholder="博客中显示的昵称" name="userName" type="text">
-            <p style="color:red">*</p>
-        </div>
-        <div class="form-group">
-            <label for="password">密码</label>
-            <input type="password" class="form-control" name="password" placeholder="密码">
-            <p style="color:red">*</p>
-        </div>
-        <div class="form-group">
-            <label for="confirmPassword">确认密码</label>
-            <input type="password" class="form-control" name="confirmPassword" placeholder="密码">
-            <p style="color:red">*</p>
-        </div>
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" style="width: 100%;" value="注册" />
-        </div>
-        <div class="form-group" align="right">
-            <a href="~/Home/FirstPage">
-                <span class="glyphicon glyphicon-backward" style="font-size:large">返回</span>
-            </a>
-        </div>
+            <div class="form-horizontal" style="width: 35%;margin: 50px auto;">
+                <div class="form-group">
+                    <label for="userID">用户ID</label>
+                    <input class="form-control" placeholder="博客登录账号" name="userID" type="text">
+                    <p style="color:red">*</p>
+                </div>
+                <div class="form-group">
+                    <label for="userName">用户昵称</label>
+                    <input class="form-control" placeholder="博客中显示的昵称" name="userName" type="text">
+                    <p style="color:red">*</p>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" name="password" placeholder="密码">
+                    <p style="color:red">*</p>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">确认密码</label>
+                    <input type="password" class="form-control" name="confirmPassword" placeholder="密码">
+                    <p style="color:red">*</p>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" style="width: 100%;" value="注册" />
+                </div>
+                <div class="form-group" align="right">
+                    <a href="~/Home/FirstPage">
+                        <span class="glyphicon glyphicon-backward" style="font-size:large">返回</span>
+                    </a>
+                </div>
 
-    </div>
+            </div>
 
-}
+        }
     </body>
         </html>
