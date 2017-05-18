@@ -24,7 +24,7 @@ namespace Blog.Models
         public DateTime Time { get; set; }
 
         [DisplayName("状态")]
-        public Boolean status { get; set; } //true--有效赞，false--已取消赞
+        public bool status { get; set; } //true--有效赞，false--已取消赞
 
     }
 }

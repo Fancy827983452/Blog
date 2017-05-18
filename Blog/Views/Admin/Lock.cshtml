@@ -2,6 +2,9 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+@{
+    var models = Model;
+}
 <!DOCTYPE html>
 
 <html>
@@ -36,21 +39,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>锁定</td>
-                    </tr>
-                    <tr>
-                        <td>456</td>
-                        <td>456</td>
-                        <td>锁定</td>
-                    </tr>
-                    <tr>
-                        <td>789</td>
-                        <td>789</td>
-                        <td>锁定</td>
-                    </tr>
+                    @if (models != null)
+                    {
+                        foreach (var b in models)
+                        {
+                            <tr onclick="window.location.href = 'ViewUsers?UserID=@b.UserID'">
+                                <td>@b.UserID</td>
+                                <td>@b.UserName</td>
+                                @if (@b.status == false)
+                                {
+                                    <td>锁定</td>
+                                }
+                                else
+                                {
+                                    <td>活动</td>
+                                }
+                            </tr>
+                        }
+                    }                           
                 </tbody>
             </table>
         </div>
