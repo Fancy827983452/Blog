@@ -28,5 +28,8 @@ namespace Blog.Models
 
         [DisplayName("身份")]
         public string Identification { get; set; }
+
+        [DisplayName("状态")]
+        public bool status { get; set; }//true--活动，false--锁定
     }
 }

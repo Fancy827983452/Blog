@@ -451,6 +451,7 @@
     <Content Include="File\3.jpg" />
     <Content Include="File\bg1.jpg" />
     <Content Include="File\bg4.jpg" />
+    <Content Include="File\Images\defaultUserImage.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\Blog.csproj.FileListAbsolute.txt" />
@@ -542,6 +543,7 @@
     <Content Include="Views\UserBlog\WriteMessage.cshtml" />
     <Content Include="Views\Shared\_blogLayout.cshtml" />
     <Content Include="Views\UserBlog\Like.cshtml" />
+    <Content Include="Views\Admin\ViewUsers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -552,7 +554,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\ueditor\net\upload\image\" />
-    <Folder Include="File\Images\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Blog\" />
   </ItemGroup>

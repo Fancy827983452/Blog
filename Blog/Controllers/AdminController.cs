@@ -30,9 +30,28 @@ namespace Blog.Controllers
             }
         }
 
+        public ActionResult ViewUsers(String UserID)//查看用户个人信息
+        {
+            Models.UserAccount user = db.UserAccounts.Find(UserID);//找到用户           
+            List<Models.Blog> blogs = db.Blogs.Where(m => m.BloggerID == UserID).ToList();//找到用户所有的博文
+            ViewBag.blogs = blogs;
+
+            return View(user);
+        }
+
         public ActionResult Lock()
         {
-            return View();
+            List<Models.UserAccount> userAccountModels = db.UserAccounts.ToList();//显示数据库中所有的博文
+            Models.UserAccount admin = db.UserAccounts.Find("admin");
+            userAccountModels.Remove(admin);
+            if (userAccountModels.Count != 0)
+            {
+                return View(userAccountModels);
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult UnLock()
         {

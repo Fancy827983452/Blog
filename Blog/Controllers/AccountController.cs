@@ -88,9 +88,10 @@ namespace Blog.Controllers
                         userAccountModel.UserID = fc["userID"];
                         userAccountModel.UserName = fc["userName"];
                         userAccountModel.Password = fc["password"];
-                        userAccountModel.UserImage = null;
+                        userAccountModel.UserImage = "defaultUserImage.jpg";
                         userAccountModel.PhoneNumber = null;
                         userAccountModel.Identification = "user";
+                        userAccountModel.status = true;
                         db.UserAccounts.Add(userAccountModel);
                         //try
                         //{

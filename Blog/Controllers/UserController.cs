@@ -91,7 +91,7 @@ namespace Blog.Controllers
                 else
                 {
                     userAccountModel = db.UserAccounts.Find(Session["UserID"]);
-                    string password = userAccountModel.Password;
+                    //string password = userAccountModel.Password;
                     if (ModelState.IsValid)
                     {
                         #region
@@ -108,15 +108,16 @@ namespace Blog.Controllers
                                 //return Content("<script>alert('上传异常 ！');window.open('" + Url.Content("~/User/EditInfo") + "', '_self')</script>");
                             }
 
-                            db.UserAccounts.Remove(userAccountModel);
-                            db.SaveChanges();
-                            userAccountModel.UserID = Session["UserID"].ToString();
+                            //db.UserAccounts.Remove(userAccountModel);
+                            //db.SaveChanges();
+                            //userAccountModel.UserID = Session["UserID"].ToString();
                             userAccountModel.UserName = fc["userName"];
-                            userAccountModel.Password = password;
+                            //userAccountModel.Password = password;
                             userAccountModel.UserImage = file.FileName;//仅仅保存图片的名字
                             userAccountModel.PhoneNumber = fc["tel"];
-                            userAccountModel.Identification = "user";
-                            db.UserAccounts.Add(userAccountModel);
+                            //userAccountModel.Identification = "user";
+                            //db.UserAccounts.Add(userAccountModel);
+                            db.Entry(userAccountModel).State = EntityState.Modified;
                             db.SaveChanges();
 
                             Session["UserName"] = userAccountModel.UserName;
@@ -171,15 +172,16 @@ namespace Blog.Controllers
                 { 
                     if (ModelState.IsValid)
                     {
-                        db.UserAccounts.Remove(userAccountModel);
-                        db.SaveChanges();
-                        userAccountModel.UserID = Session["UserID"].ToString();
-                        userAccountModel.UserName = Session["UserName"].ToString();
+                        //db.UserAccounts.Remove(userAccountModel);
+                        //db.SaveChanges();
+                        //userAccountModel.UserID = Session["UserID"].ToString();
+                        //userAccountModel.UserName = Session["UserName"].ToString();
                         userAccountModel.Password = fc["password_new"];
-                        userAccountModel.UserImage = Session["UserImage"].ToString();
-                        userAccountModel.PhoneNumber = Session["PhoneNumber"].ToString();
-                        userAccountModel.Identification = "user";
-                        db.UserAccounts.Add(userAccountModel);
+                        //userAccountModel.UserImage = Session["UserImage"].ToString();
+                        //userAccountModel.PhoneNumber = Session["PhoneNumber"].ToString();
+                        //userAccountModel.Identification = "user";
+                        //db.UserAccounts.Add(userAccountModel);
+                        db.Entry(userAccountModel).State = EntityState.Modified;
                         db.SaveChanges();
 
                         Session["UserID"] = userAccountModel.UserID;
