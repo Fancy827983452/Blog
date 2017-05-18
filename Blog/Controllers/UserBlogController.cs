@@ -108,8 +108,18 @@ namespace Blog.Controllers
             }
        
         }
-        public ActionResult hello()
+
+        public ActionResult DeleteBlog(int BlogID)
         {
+            Models.Blog blog = db.Blogs.Find(BlogID);
+            db.Blogs.Remove(blog);
+            db.SaveChanges();
+            return Content("<script>alert('博文删除成功！');window.open('" + Url.Content("~/Admin/ViewBlogs") + "', '_self')</script>");
+        }
+
+        public ActionResult RecommandBlog(int BlogID)
+        {
+
             return View();
         }
 

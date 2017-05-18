@@ -62,6 +62,7 @@ namespace Blog.Controllers
                 blog.BloggerID = Session["UserID"].ToString();
                 blog.CreateTime = DateTime.Now;
                 blog.ModifyTime = DateTime.Now;
+                blog.isRecommended = false;
                 db.Blogs.Add(blog);
                 db.SaveChanges();
             }

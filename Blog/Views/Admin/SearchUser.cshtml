@@ -18,8 +18,10 @@
             <div class="form-group">
                 <input type="text" name="search" class="form-control" placeholder="用户ID">
             </div>
-            <button type="submit" class="btn btn-default">搜索</button>
+            <button type="submit" class="btn btn-default">提交</button>
+            <button type="button" class="btn btn-default" onclick="window.location.href = 'Lock'">显示全部</button>
         </form>
+
         <br />
         <br />
         <br />
@@ -50,8 +52,8 @@
                                 {
                                     <td>锁定</td>
                                     <td>
-                                        <form action="~/Admin/UnLock?UserID=@b.UserID"  method="post">
-                                            <input type="submit" class="btn btn-default" value="解锁"/>
+                                        <form action="~/Admin/UnLock?UserID=@b.UserID" method="post">
+                                            <input type="submit" class="btn btn-default" value="解锁" />
                                         </form>
                                     </td>
 
@@ -71,7 +73,7 @@
                 </tbody>
             </table>
         </div>
-        
+
     </div>
 </body>
 </html>

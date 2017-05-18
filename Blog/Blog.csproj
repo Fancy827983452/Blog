@@ -503,6 +503,7 @@
     </Compile>
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\Like.cs" />
+    <Compile Include="Models\Recommend.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
@@ -543,6 +544,9 @@
     <Content Include="Views\UserBlog\WriteMessage.cshtml" />
     <Content Include="Views\Admin\ViewUsers.cshtml" />
     <Content Include="Views\Shared\_blogLayout.cshtml" />
+    <Content Include="Views\Admin\seeblogdetails.cshtml" />
+    <Content Include="Views\Admin\SearchUser.cshtml" />
+    <Content Include="Views\Admin\SearchBlog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

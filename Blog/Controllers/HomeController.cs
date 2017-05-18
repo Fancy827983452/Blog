@@ -17,8 +17,8 @@ namespace Blog.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            List<Models.Blog> models = db.Blogs.ToList();
-            return View();
+            List<Models.Recommend> models = db.Recommends.ToList();
+            return View(models);
         }
         public ActionResult Entertainment()
         {
