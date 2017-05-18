@@ -37,6 +37,7 @@ namespace Blog.Controllers
             ViewData["likescount"] = likescount;
             ViewData["BloggerImage"] = user.UserImage;
             ViewData["BloggerID"] = user.UserID;
+            ViewData["userName"] = user.UserName;
             ViewBag.comments = comments;
             return View(blog);
         }   
@@ -49,6 +50,9 @@ namespace Blog.Controllers
             List<Models.Blog> blogs = db.Blogs.Where(m => m.BloggerID == BloggerID).ToList();//找到博主所有的博文
          
             ViewBag.blogs = blogs;
+
+            ViewData["UserImage"] = user.UserImage;
+            ViewData["UserName"] = user.UserName;
 
             return View(user);
         }

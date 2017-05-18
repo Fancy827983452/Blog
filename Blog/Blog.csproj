@@ -151,7 +151,27 @@
     <Content Include="bin\zh-Hans\System.Web.Webpages.resources.dll" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Like\Css\demo.css" />
+    <Content Include="Content\Like\Images\yizan.png" />
+    <Content Include="Content\Like\Images\zan.png" />
+    <Content Include="Content\Like\Js\jquery-1.8.3.min.js" />
+    <Content Include="Content\Like\Js\Like.js" />
     <Content Include="Content\owncss\style.css" />
+    <Content Include="Content\Reward\1.jpg" />
+    <Content Include="Content\Reward\2.jpg" />
+    <Content Include="Content\Reward\3.jpg" />
+    <Content Include="Content\Reward\img\alipay.jpg" />
+    <Content Include="Content\Reward\img\alipayimg.jpg" />
+    <Content Include="Content\Reward\img\close.jpg" />
+    <Content Include="Content\Reward\img\code-bg.jpg" />
+    <Content Include="Content\Reward\img\cy-reward-title-bg.jpg" />
+    <Content Include="Content\Reward\img\radio1.jpg" />
+    <Content Include="Content\Reward\img\radio2.jpg" />
+    <Content Include="Content\Reward\img\wechat.jpg" />
+    <Content Include="Content\Reward\img\weipayimg.jpg" />
+    <Content Include="Content\Reward\js\jquery-1.8.3.min.js" />
+    <Content Include="Content\Reward\js\reward.js" />
+    <Content Include="Content\Reward\reward.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\ueditor\dialogs\anchor\anchor.html" />
     <Content Include="Content\ueditor\dialogs\attachment\attachment.css" />
@@ -453,6 +473,7 @@
     <Content Include="Content\ueditor\net\controller.ashx" />
     <Content Include="Content\ueditor\net\README.md" />
     <Content Include="Content\ueditor\net\Web.config" />
+    <Content Include="Content\Reward\img\.DS_Store" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -519,6 +540,11 @@
     <Content Include="Views\UserBlog\seeuserdetails.cshtml" />
     <Content Include="Views\Admin\ViewBlogs.cshtml" />
     <Content Include="Views\UserBlog\comment.cshtml" />
+    <Content Include="Views\UserBlog\Like.cshtml" />
+    <Content Include="Views\UserBlog\SendPrivateMessage.cshtml" />
+    <Content Include="Views\UserBlog\WriteMessage.cshtml" />
+    <Content Include="Views\Admin\ViewUsers.cshtml" />
+    <Content Include="Views\Shared\_blogLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
