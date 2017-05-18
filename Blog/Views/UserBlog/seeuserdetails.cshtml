@@ -30,7 +30,7 @@
                         <li class="list-group-item">
                            <img class="img-responsive" id="head" name="head" src="~/File/Images/@ViewData["BloggerImage"]" />
                         </li>
-                        <li class="list-group-item">用户名</li>
+                        <li class="list-group-item">用户名: @ViewData["UserName"]</li>
                         <li class="list-group-item">
                             <button type="button" class="btn btn-default btn-sm">加关注</button>
                             <button type="button" class="btn btn-default btn-sm">写留言</button>
@@ -44,10 +44,20 @@
 
                 <div class="col-md-8">
                     <div>
-
+                        <!-- 显示所有博文并且能够查看详情,查看详情就跳转到seeblogdetails的页面-->
+                        @if (blogs != null)
+                        {
+                            foreach (var b in blogs)
+                            {
+                                <table>
+                                    <tr>
+                                        <td style="font-size:large;"><p>@b.BlogTitle</p></td>
+                                        <td style="font-size:large; float:right"> <a class="glyphicon glyphicon-chevron-right" href="~/UserBlog/seeblogdetails?BlogID=@b.BlogID">查看详情</a></td>
+                                    </tr>
+                                </table>
+                            }
+                        }
                     </div>
-                    <!-- 显示所有博文并且能够查看详情,查看详情就跳转到seeblogdetails的页面-->
-
                 </div>
             </div>
         </div>

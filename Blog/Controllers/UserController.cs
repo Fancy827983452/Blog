@@ -32,7 +32,12 @@ namespace Blog.Controllers
 
         public ActionResult Write()//写博文
         {
-            return View();
+            string BloggerID = Session["UserID"].ToString();
+            Models.UserAccount user = db.UserAccounts.Find(BloggerID);//找到用户
+            if(user.status==false)
+                return Content("<script>alert('该账户已处于锁定状态，解锁请与管理员联系！');window.open('" + Url.Content("~/User/Index") + "', '_self')</script>");
+            else 
+                return View();
         }
 
         [HttpPost]
@@ -228,8 +233,15 @@ namespace Blog.Controllers
         [HttpGet]
         public ActionResult blogedit(int BlogID)//博文修改
         {
-            Models.Blog blog = db.Blogs.Find(BlogID);
-            return View(blog);
+            string BloggerID = Session["UserID"].ToString();
+            Models.UserAccount user = db.UserAccounts.Find(BloggerID);//找到用户
+            if (user.status == false)
+                return Content("<script>alert('该账户已处于锁定状态，解锁请与管理员联系！');window.open('" + Url.Content("~/User/Index") + "', '_self')</script>");
+            else
+            {
+                Models.Blog blog = db.Blogs.Find(BlogID);
+                return View(blog);
+            }
         }
         [HttpPost]
         [ValidateInput(false)]
