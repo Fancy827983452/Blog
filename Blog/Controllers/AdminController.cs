@@ -2,6 +2,7 @@
 using Blog.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -41,9 +42,9 @@ namespace Blog.Controllers
 
         public ActionResult Lock()
         {
-            List<Models.UserAccount> userAccountModels = db.UserAccounts.ToList();//显示数据库中所有的博文
+            List<Models.UserAccount> userAccountModels = db.UserAccounts.ToList();//显示数据库中所有的用户
             Models.UserAccount admin = db.UserAccounts.Find("admin");
-            userAccountModels.Remove(admin);
+            userAccountModels.Remove(admin);//除去管理员
             if (userAccountModels.Count != 0)
             {
                 return View(userAccountModels);
@@ -53,10 +54,37 @@ namespace Blog.Controllers
                 return View();
             }
         }
-        public ActionResult UnLock()
+
+        [HttpPost]
+        public ActionResult Lock(string UserID)
         {
-            return View();
+            Models.UserAccount user = db.UserAccounts.Find(UserID);//找到用户  
+            if (ModelState.IsValid)
+            {
+                user.status = false;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return Content("<script>alert('锁定用户成功！');window.open('" + Url.Content("~/Admin/Lock") + "', '_self')</script>");
+            }
+            else
+                return Content("<script>alert('锁定用户失败！');window.open('" + Url.Content("~/Admin/Lock") + "', '_self')</script>");
         }
+
+        [HttpPost]
+        public ActionResult UnLock(string UserID)
+        {
+            Models.UserAccount user = db.UserAccounts.Find(UserID);//找到用户  
+            if (ModelState.IsValid)
+            {
+                user.status = true;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return Content("<script>alert('解锁用户成功！');window.open('" + Url.Content("~/Admin/Lock") + "', '_self')</script>");
+            }
+            else
+                return Content("<script>alert('解锁用户失败！');window.open('" + Url.Content("~/Admin/Lock") + "', '_self')</script>");
+        }
+
         public ActionResult DeleteBlogs(int BlogID, FormCollection form)
         {
             //var SelectedValue = from x in form.AllKeys
@@ -74,7 +102,7 @@ namespace Blog.Controllers
             //    continue;
             //}
             //db.SaveChanges();
-
+            
 
             Models.Blog blog = db.Blogs.Find(BlogID);
             db.Blogs.Remove(blog);

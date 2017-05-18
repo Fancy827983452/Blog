@@ -165,8 +165,6 @@
     <Content Include="Content\Reward\img\close.jpg" />
     <Content Include="Content\Reward\img\code-bg.jpg" />
     <Content Include="Content\Reward\img\cy-reward-title-bg.jpg" />
-    <Content Include="Content\Reward\img\radio1.jpg" />
-    <Content Include="Content\Reward\img\radio2.jpg" />
     <Content Include="Content\Reward\img\wechat.jpg" />
     <Content Include="Content\Reward\img\weipayimg.jpg" />
     <Content Include="Content\Reward\js\jquery-1.8.3.min.js" />
@@ -451,7 +449,6 @@
     <Content Include="File\3.jpg" />
     <Content Include="File\bg1.jpg" />
     <Content Include="File\bg4.jpg" />
-    <Content Include="File\Images\defaultUserImage.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\Blog.csproj.FileListAbsolute.txt" />
@@ -499,6 +496,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserBlogController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DatabaseContext\BlogDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -539,11 +537,12 @@
     <Content Include="Views\UserBlog\seeblogdetails.cshtml" />
     <Content Include="Views\UserBlog\seeuserdetails.cshtml" />
     <Content Include="Views\Admin\ViewBlogs.cshtml" />
+    <Content Include="Views\UserBlog\comment.cshtml" />
+    <Content Include="Views\UserBlog\Like.cshtml" />
     <Content Include="Views\UserBlog\SendPrivateMessage.cshtml" />
     <Content Include="Views\UserBlog\WriteMessage.cshtml" />
-    <Content Include="Views\Shared\_blogLayout.cshtml" />
-    <Content Include="Views\UserBlog\Like.cshtml" />
     <Content Include="Views\Admin\ViewUsers.cshtml" />
+    <Content Include="Views\Shared\_blogLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -554,6 +553,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\ueditor\net\upload\image\" />
+    <Folder Include="File\Images\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Blog\" />
   </ItemGroup>

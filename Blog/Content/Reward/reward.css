@@ -5,7 +5,6 @@
  filter:alpha(opacity=50);
  background:#666;
  opacity: 0.5;
- /*-moz-opacity: 0.5;*/
  left:0;top:0;height:99%;width:100%;
  position:fixed;display:none;}
 .shang_box

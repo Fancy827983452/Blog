@@ -42,7 +42,10 @@ namespace Blog.Controllers
                             Session["UserID"] = u.UserID;
                             Session["UserName"] = u.UserName;
                             Session["Identification"] = u.Identification;
-                            return Content("<script>alert('登录成功，欢迎回来！');window.open('" + Url.Content("~/Home/Index") + "', '_self')</script>");
+                            if (u.status == false)
+                                return Content("<script>alert('该账户已处于锁定状态，将不能发表和编辑博文！');window.open('" + Url.Content("~/Home/Index") + "', '_self')</script>");
+                            else
+                                return Content("<script>alert('登录成功，欢迎回来！');window.open('" + Url.Content("~/Home/Index") + "', '_self')</script>");
                         }
                         else
                         {

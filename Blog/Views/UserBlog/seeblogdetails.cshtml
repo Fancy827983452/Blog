@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
+@{
+    var comments = ViewBag.comments;
+}
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,14 +16,13 @@
     <script type="text/javascript" src="~/Content/Reward/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="~/Content/Like/Js/Like.js"></script>
     <script type="text/javascript" src="~/Content/Reward/js/reward.js"></script>
-
 </head>
-
 <body>
+
     <div class="container">
         <div>
             <div class="form-group">
-                <a href="#" onClick="javascript:history.back(-1);">
+                <a href="~/Home/Entertainment">
                     <span class="glyphicon glyphicon-backward" style="font-size:large">返回</span>
                 </a>
             </div>
@@ -31,7 +33,7 @@
                     <li class="list-group-item">
                         <a href="~/UserBlog/seeuserdetails?BloggerID=@ViewData["BloggerID"]"><img class="img-responsive" id="head" name="head" src="~/File/Images/@ViewData["BloggerImage"]" /></a>
                     </li>
-                    <li class="list-group-item">用户名</li>
+                    <li class="list-group-item">用户名：@ViewData["userName"] </li>
                     <li class="list-group-item">
                         <button type="button" class="btn btn-default btn-sm">加关注</button>
                         <button type="button" class="btn btn-default btn-sm">写留言</button>
@@ -54,12 +56,25 @@
                     <div class="form-group">
                         <div>@Html.Raw(Model.BlogContent)</div>
                     </div>
-                </form>
+                    <div>
+                        <a href="~/UserBlog/comment?BlogID=@Model.BlogID&ReplyID=@Model.BloggerID">评论</a>
 
-                <a href="~/UserBlog/Like?BlogID=@Model.BlogID">点赞</a>
+                    </div>
+                </form>
+                <br />
+                @using (Html.BeginForm("like", "UserBlog", FormMethod.Post))
+            {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <input id="Hidden1" name="LikeBlogID" value=@Model.BlogID type="hidden">
+                    <button type="submit" class="btn btn-default btn-sm" style="background: @ViewData["background"]">
+                        <span class="glyphicon glyphicon-thumbs-up"></span> @ViewData["likescount"]
+                    </button>
+                    
+                }
 
                 <div class="content">
-                    <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下">打赏</a></p>
+                    <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下"><span>打赏</span></a></p>
                     <div class="hide_box"></div>
                     <div class="shang_box">
                         <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()" title="关闭"><img src="~/Content/Reward/img/close.jpg" alt="取消" /></a>
@@ -67,43 +82,51 @@
                             <p>感谢您的支持，我会继续努力的!</p>
                         </div>
                         <div class="shang_payimg">
-                            <img src="~/Content/Reward/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+                            <div class="shang_pay">
+                                <span><img src="~/Content/Reward/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" /></span>
+                            </div>
+                            <div class="shang_pay">
+                                <span><img src="~/Content/Reward/img/weipayimg.jpg" alt="扫码支持" title="扫一扫" /></span>
+                            </div>
                         </div>
+
                         <div class="pay_explain">扫码打赏，你说多少就多少</div>
+
                         <div class="shang_payselect">
-                            <div class="pay_item checked" data-id="alipay">
-                                <span class="radiobox"></span>
+                            <div class="pay_item" data-id="alipay">
                                 <span class="pay_logo"><img src="~/Content/Reward/img/alipay.jpg" alt="支付宝" /></span>
                             </div>
                             <div class="pay_item" data-id="weipay">
-                                <span class="radiobox"></span>
                                 <span class="pay_logo"><img src="~/Content/Reward/img/wechat.jpg" alt="微信" /></span>
                             </div>
                         </div>
                         <div class="shang_info">
-                            <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+                            <p>打开<span id="shang_pay_txt">支付宝/微信</span>扫一扫，即可进行扫码打赏哦</p>
                         </div>
                     </div>
+                </div>
 
-                    <br /><br /><br />
+
                     <div>
-                        <label for="name">评论：</label>
+                        <label for="name">所有评论：</label>
                         <!-- 显示所有评论 -->
+                        @if (comments != null)
+                        {
+                            foreach (var c in comments)
+                            {
+                                <div>
+                                    <p><a href="~/UserBlog/seeuserdetails?BloggerID=@c.UserID ">  @c.UserID </a>回复<a href="~/UserBlog/seeuserdetails?BloggerID=@c.ReplyID "> @c.ReplyID </a>于：@c.CommentTime </p>
+                                    <p>: @c.CommentContent<a href="~/UserBlog/comment?BlogID=@c.BlogID &ReplyID= @c.UserID">回复</a></p>
+                                    <p>-------------------------------------------------------------------------------------------------------</p>
+                                </div>
+
+                            }
+                        }
                     </div>
                     <br />
-                    <div>
-                        <form role="form">
-                            <div class="form-group">
-                                <label for="name">写评论：</label>
-                                <textarea class="form-control" rows="3"></textarea>
-                            </div>
-                            <div align="right">
-                                <button type="button" class="btn btn-default">发表</button>
-                            </div>
-                        </form>
-                    </div>
+
                 </div>
+            </div>
         </div>
-    </div>
 </body>
 </html>

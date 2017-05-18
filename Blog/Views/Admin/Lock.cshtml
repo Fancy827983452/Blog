@@ -28,11 +28,12 @@
                 </li>
             </ul>
         </div>
-        <br/>
+        <br />
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>&nbsp;&nbsp;</th>
                         <th>用户ID</th>
                         <th>昵称</th>
                         <th>状态</th>
@@ -44,19 +45,35 @@
                         foreach (var b in models)
                         {
                             <tr onclick="window.location.href = 'ViewUsers?UserID=@b.UserID'">
+                                <td>
+                                    <div class="checkbox">
+                                        <input type="checkbox" value=@b.UserID />
+                                    </div>
+                                </td>
                                 <td>@b.UserID</td>
                                 <td>@b.UserName</td>
                                 @if (@b.status == false)
                                 {
                                     <td>锁定</td>
+                                    <td>
+                                        <form action="~/Admin/UnLock?UserID=@b.UserID"  method="post">
+                                            <input type="submit" class="btn btn-default" value="解锁"/>
+                                        </form>
+                                    </td>
+
                                 }
                                 else
                                 {
                                     <td>活动</td>
+                                    <td>
+                                        <form action="~/Admin/Lock?UserID=@b.UserID" method="post">
+                                            <input type="submit" class="btn btn-default" value="锁定" />
+                                        </form>
+                                    </td>
                                 }
                             </tr>
                         }
-                    }                           
+                    }
                 </tbody>
             </table>
         </div>
