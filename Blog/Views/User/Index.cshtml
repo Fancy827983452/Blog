@@ -1,21 +1,21 @@
-﻿ @{
-     Layout = "~/Views/Shared/_UserLayout.cshtml";
+﻿@{
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
 @{
-    var models =Model;
+    var models = Model;
 }
-<table  style="width:100%">
-@if (models!= null)
-{
+<table style="width:100%">
+    @if (models != null)
+    {
 
-  foreach (var b in models)
-{
-   <tr>
-    <td style="font-size:large;"><p >@b.BlogTitle</p></td>
-    <td style="font-size:large; float:right"> <a class="glyphicon glyphicon-chevron-right" href="~/User/blogdetails?BlogID=@b.BlogID">查看详情</a></td>
-  </tr>
+        foreach (var b in models)
+        {
+            <tr>
+                <td style="font-size:large;"><p>@b.BlogTitle</p></td>
+                <td style="font-size:large; float:right"> <a class="glyphicon glyphicon-chevron-right" href="~/UserBlog/seeblogdetails?BlogID=@b.BlogID">查看详情</a></td>
+            </tr>
 
-}
-}
+        }
+    }
 </table>

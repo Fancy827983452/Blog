@@ -1,0 +1,28 @@
+﻿
+ 
+@{
+    ViewBag.Title = "AtMe";
+}
+
+@{
+    var atme = Model;
+}
+<div class="form-group">
+    <a href="#" onClick="javascript:history.back(-1);">
+        <span class="glyphicon glyphicon-backward" style="font-size:large">返回</span>
+    </a>
+</div>
+@foreach (var a in atme)
+{
+
+    <div>
+        <p>
+            <a href="~/UserBlog/seeuserdetails?BloggerID=@a.UserID"> @a.UserID </a> 在博文 <a href="~/UserBlog/seeblogdetails?BlogID=@a.BlogID"> @a.BlogID </a>回复了我：
+        </p>
+        <p> @a.CommentContent </p>
+        <p>于： @a.CommentTime </p>
+        <a href="~/UserBlog/comment?BlogID=@a.BlogID&ReplyID=@a.UserID">回复</a>
+        <p>-----------------------------------------------------------------------------------------------------------------</p>
+    </div>
+
+}
