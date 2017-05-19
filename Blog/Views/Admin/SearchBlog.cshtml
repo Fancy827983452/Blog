@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    var models = Model;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <form class="navbar-form navbar-left" role="search" action="~/Admin/SearchBlog" method="post">
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" placeholder="博文ID">
+            </div>
+            <button type="submit" class="btn btn-default">搜索</button>
+            <button type="button" class="btn btn-default" onclick="window.location.href = 'ViewBlogs'">显示全部</button>
+        </form>
+        <br />
+        <br />
+        <br />
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>博文ID</th>
+                        <th>博文标题</th>
+                        <th>操作</th>
+                        <th>&nbsp;&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (models != null)
+                    {
+                        foreach (var b in models)
+                        {
+                            <tr>
+                                <td>@b.BlogID</td>
+                                <td><a href="~/Admin/seeblogdetails?BlogID=@b.BlogID">@b.BlogTitle</a></td>
+                                <td>
+                                    <form action="~/Admin/DeleteBlogs?BlogID=@b.BlogID" method="post">
+                                        <input type="submit" class="btn btn-default" value="删除" />
+                                    </form>
+                                </td>
+                                <td>
+
+                                    @if (@b.isRecommended == false)
+                                    {
+                                        <form action="~/Admin/RecommendBlogs?BlogID=@b.BlogID" method="post">
+                                            <input type="submit" class="btn btn-default" value="推荐" />
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <form action="~/Admin/CancelRecommendBlogs?BlogID=@b.BlogID" method="post">
+                                            <input type="submit" class="btn btn-default" value="取消推荐" />
+                                        </form>
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

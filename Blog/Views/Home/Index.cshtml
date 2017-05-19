@@ -1,4 +1,8 @@
-﻿<div class="container">
+﻿@{
+    var models = Model;
+}
+
+<div class="container">
     <div class="row">
         <div class="col-md-4" style="background-color:white;">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-pause="hover" data-interval="3000">
@@ -37,7 +41,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        @*<div class="col-md-4">
             <p class="more">Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan.Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non.ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan</p>
         </div>
         <div class="col-md-4">
@@ -45,8 +49,25 @@
         </div>
         <div class="col-md-4">
             <p class="more">Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan.Aenean feugiat in ante et blandit. Vestibulum posuere molestie risus, ac interdum magna porta non.ac interdum magna porta non. Pellentesque rutrum fringilla elementum. Curabitur tincidunt porta lorem vitae accumsan</p>
-        </div>
-    </div>
+        </div>*@
+    @if (models != null)
+    {
+        foreach (var b in models)
+        {
+            <div class="col-md-4">
+                <p class="more" style="color:red">
+                    @if (Session["Identification"].ToString() == "admin")
+                    {
+                        <a href="~/Admin/seeblogdetails?BlogID=@b.BlogID">@b.BlogTitle</a>
+                    }
+                    else
+                    {
+                        <a href="~/UserBlog/seeblogdetails?BlogID=@b.BlogID">@b.BlogTitle</a>
+                    }
+                </p>
+                </div>
+        }
+    }
     </div>
 
 

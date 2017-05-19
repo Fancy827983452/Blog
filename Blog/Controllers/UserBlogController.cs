@@ -75,7 +75,7 @@ namespace Blog.Controllers
             {
                 ViewData["guanzhu"] = "取消关注";
             }
-
+         
             ViewBag.blogs = blogs;
 
             ViewData["UserImage"] = user.UserImage;
@@ -105,7 +105,7 @@ namespace Blog.Controllers
                 db.Comments.Add(comment);
                 db.SaveChanges();
                // return Content("<script>alert('评论成功！');window.location.href=document.referrer;</script>");
-              return Content("<script>alert('评论成功！');window.open('" + Url.Content("~/UserBlog/seeblogdetails?BlogID=" + BlogID1 + "") + "', '_self')</script>");
+                return Content("<script>alert('评论成功！');window.open('" + Url.Content("~/UserBlog/seeblogdetails?BlogID=" + BlogID1 + "") + "', '_self')</script>");
             }
             catch (Exception e)
             {
@@ -139,7 +139,7 @@ namespace Blog.Controllers
                 // return Content("<script>window.open('" + Url.Content("~/UserBlog/seeblogdetails?BlogID=" + BlogID + "") + "', '_self')</script>");
             }
        
-        }
+            }
         [HttpPost]
         public ActionResult focus(Models.Focus focus, String Focused,String BlogID)//处理关注的代码
         {
@@ -147,7 +147,7 @@ namespace Blog.Controllers
             String MyUserID = Session["UserID"].ToString();
             int BlogID1 = Convert.ToInt32(BlogID);//用来返回页面
             List<Models.Focus> focuses = db.Focuses.Where(n => n.DoFocus == MyUserID).Where(m=>m.Focused==Focused).ToList(); //判断是否关注此人
-             
+       
             if (focuses.Count()==0)//没有关注此人，做关注
             {
                 focus.Focused = Focused;
@@ -157,13 +157,24 @@ namespace Blog.Controllers
 
                 // Response.Redirect(Request.Url.ToString());
                 return Content("<script language=javascript>self.location=document.referrer;</script>");
-            }
-            else//已经关注此人,做取关
-            {
+        }
+
+        public ActionResult DeleteBlog(int BlogID)
+        {
+            Models.Blog blog = db.Blogs.Find(BlogID);
+            db.Blogs.Remove(blog);
+            db.SaveChanges();
+            return Content("<script>alert('博文删除成功！');window.open('" + Url.Content("~/Admin/ViewBlogs") + "', '_self')</script>");
+        }
+
+        public ActionResult RecommandBlog(int BlogID)
+        {
+
+            return View();
                 foreach (Models.Focus f in focuses)
                 {                   
                     db.Focuses.Remove(f);                
-                }
+        }
                 db.SaveChanges();
                 return Content("<script language=javascript>self.location=document.referrer;</script>");
 

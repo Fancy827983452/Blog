@@ -1,0 +1,81 @@
+﻿@model Blog.Models.Blog
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@{
+    var comments = ViewBag.comments;
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" href="~/Content/Like/Css/demo.css" />
+    <link href="~/Content/Reward/reward.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/Like/Js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="~/Content/Reward/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="~/Content/Like/Js/Like.js"></script>
+    <script type="text/javascript" src="~/Content/Reward/js/reward.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div>
+            <div class="form-group">
+                <a href="#" onClick="javascript:history.back(-1);">
+                    <span class="glyphicon glyphicon-backward" style="font-size:large">返回</span>
+                </a>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-lg-3">
+                <ul class="list-group" id="ueserfunction">
+                    <li class="list-group-item">
+                        <a href="~/UserBlog/seeuserdetails?BloggerID=@ViewData["BloggerID"]"><img class="img-responsive" id="head" name="head" src="~/File/Images/@ViewData["BloggerImage"]" /></a>
+                    </li>
+                    <li class="list-group-item">用户名：@ViewData["userName"] </li>
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-default btn-sm">发私信</button>
+                    </li>
+                    <li class="list-group-item">点赞数</li>
+                    <li class="list-group-item">粉丝数</li>
+                    <li class="list-group-item">留言数</li>
+                </ul>
+            </div>
+
+            <div class="col-md-8">
+                <form role="form">
+                    <div class="form-group">
+                        <div style="font-size:larger"><h3>@Model.BlogTitle</h3></div>
+                    </div>
+                </form>
+                <br />
+                <form role="form">
+                    <div class="form-group">
+                        <div>@Html.Raw(Model.BlogContent)</div>
+                    </div>
+                </form>
+                <br />
+                <div>
+                    <label for="name">所有评论：</label>
+                    <!-- 显示所有评论 -->
+                    @if (comments != null)
+                    {
+                        foreach (var c in comments)
+                        {
+                            <div>
+                                <p><a href="~/Admin/ViewUsers?UserID=@c.UserID ">  @c.UserID </a>回复<a href="~/Admin/ViewUsers?UserID=@c.ReplyID "> @c.ReplyID </a>于：@c.CommentTime </p>
+                                <p>: @c.CommentContent</p>
+                                <p>-------------------------------------------------------------------------------------------------------</p>
+                            </div>
+
+                        }
+                    }
+                </div>
+                <br />
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

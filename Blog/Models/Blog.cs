@@ -36,5 +36,8 @@ namespace Blog.Models
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime ModifyTime { get; set; }
+
+        [DisplayName("推荐状态")]
+        public bool isRecommended { get; set; }//true--已推荐，false--取消推荐
     }
 }
