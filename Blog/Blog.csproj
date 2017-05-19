@@ -449,6 +449,10 @@
     <Content Include="File\3.jpg" />
     <Content Include="File\bg1.jpg" />
     <Content Include="File\bg4.jpg" />
+    <Content Include="File\I1.jpg" />
+    <Content Include="File\I2.jpg" />
+    <Content Include="File\I3.jpg" />
+    <Content Include="File\I4.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\Blog.csproj.FileListAbsolute.txt" />
