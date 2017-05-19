@@ -342,6 +342,36 @@ namespace Blog.Controllers
             }
             return Content("<script>alert('修改成功');window.open('" + Url.Content("~/UserBlog/seeblogdetails?BlogID=" + BlogID + "") + "', '_self')</script>");
         }
+        public ActionResult PrivateMessage()//显示所有给你发私信的人
+        {
+            String MyUserID=Session["UserID"].ToString();
+            List<Models.PrivateMessage> receive= db.PrivateMessage.Where(n => n.ReceiverID == MyUserID).ToList();//显示你收到的所有消息
+            List<Models.PrivateMessage> send = db.PrivateMessage.Where(n => n.SenderID == MyUserID).ToList();//显示你发出的所以消息
+                                                                                                             //合并联系人
+            List<Models.PrivateMessage> Result = receive.Union(send).ToList<Models.PrivateMessage>();//合并所有消息
 
+            //获取给我发私信的人的ID
+            var senderIds = (from s in db.PrivateMessage
+                              where s.ReceiverID == MyUserID
+                              select s.SenderID).Distinct();
+            //获取我发出私信的人的ID
+            var receiverIds = (from r in db.PrivateMessage
+                              where r.SenderID == MyUserID
+                              select r.ReceiverID).Distinct();
+
+            List<string> ids = new List<string>();
+            foreach (var s in senderIds)
+            {
+                ids.Add(s.ToString());
+            }
+            foreach (var r in receiverIds)
+            {
+                ids.Add(r.ToString());
+            }
+            IEnumerable<string> distinctIds =ids.Distinct();
+            ViewBag.distinctIds = distinctIds;
+
+            return View();
+        }
     }
 }

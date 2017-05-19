@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "PrivateMessage";
+    string path;
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+<div>
+@foreach (var p in ViewBag.distinctIds)
+{
+    <div>
+        @{
+            Blog.DatabaseContext.BlogDbContext db = new Blog.DatabaseContext.BlogDbContext();
+            Blog.Models.UserAccount userAccountModel = db.UserAccounts.Find(p);
+            string img = userAccountModel.UserImage;
+            if (img != null)
+            {
+
+                path = "Images/" + img;
+
+            }
+            else
+            {
+                path = "Images/defaultUserImage.jpg";
+            }
+        }
+        @*<span>path = @path</span>*@
+        <table>
+            <tr>
+                <td>
+                    <a href="~/UserBlog/SendPrivateMessage?Receiver=@p">
+                        <img class="img-responsive" name="head" id="head" src="~/File/@path" />
+                        @p
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <br />
+            }
+</div>
