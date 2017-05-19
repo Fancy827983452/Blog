@@ -204,24 +204,60 @@ namespace Blog.Controllers
 
             return View();
         }
+        
         public ActionResult Focus()
         {
-            return View();
+            String MyUserID = Session["UserID"].ToString();
+            List<Models.Focus> focuses = db.Focuses.Where(m=>m.DoFocus== MyUserID).ToList();//所以我关注的人
+            return View(focuses);
         }
-        public ActionResult Message()
+        public ActionResult AtMe()//回复我的消息
         {
-            return View();
+            String MyUserID = Session["UserID"].ToString();
+            List<Models.Comment> comments = db.Comments.Where(m => m.ReplyID == MyUserID).OrderByDescending(m=>m.CommentTime).ToList();//所以回复我评论的评论
+            return View(comments);
         }
-        public ActionResult Fans()
+
+
+
+        public ActionResult Message(String UserID)//查看留言
         {
-            return View();
+           // String MyUserID = Session["UserID"].ToString();
+            List<Models.Message> messages = db.Messages.Where(m => m.ReceiverID == UserID).OrderByDescending(m=>m.LeaveTime).ToList();
+            return View(messages);
+        }
+        public ActionResult Fans()//查看我的粉丝
+        {
+            String MyUserID = Session["UserID"].ToString();
+            List<Models.Focus> focus = db.Focuses.Where(m => m.Focused == MyUserID).ToList();
+            return View(focus);
         }
         [HttpGet]
-        public ActionResult blogdetails(int BlogID)//博文详情
+        public ActionResult blogdetails(int BlogID)//查看博文详情
         {
-            Models.Blog blog = db.Blogs.Find(BlogID);
+             
+            Models.Blog blog = db.Blogs.Find(BlogID);//找到博文      
+            List<Models.Comment> comments = db.Comments.Where(m => m.BlogID == BlogID).ToList();//吧博文的评论保存好
 
+            //赞数和是否已经点赞过
+            String UserID = Session["UserID"].ToString();
+            List<Models.Like> likes = db.Likes.Where(n => n.BlogID == BlogID).Where(m => m.UserID == UserID).ToList();//判断用户是否点赞过
+            double likescount = db.Likes.Where(m => m.BlogID == BlogID).Count();//所有的赞数
+            if (likes.Count() == 0)//没赞过设置buttom的颜色
+            {
+                ViewData["background"] = "white";
+            }
+            else
+            {//用户已经赞过 设置颜色
+                ViewData["background"] = "pink";
+            }
+            
+            ViewData["likescount"] = likescount;
+        
+            ViewBag.comments = comments;
             return View(blog);
+
+          
         }
         public ActionResult blogdelete(int BlogID)//博文删除
         {
@@ -254,7 +290,7 @@ namespace Blog.Controllers
                 string key = fc.GetKey(i);
                 string value = fc.Get(key);
                 if (value.Trim().Equals(""))
-                    return Content("<script>alert('" + key + "不能为空，请重新输入！');window.open('" + Url.Content("~/User/blogedit?BlogID=" + BlogID+"") + "', '_self')</script>");
+                    return Content("<script>alert('" + key + "不能为空，请重新输入！');window.open('" + Url.Content("~/UserBlog/seeblogdetails?BlogID=" + BlogID+"") + "', '_self')</script>");
             }
             try
             {
@@ -269,9 +305,9 @@ namespace Blog.Controllers
             }
             catch (Exception e)
             {
-                return Content("<script>alert('修改过程好像有点问题！');window.open('" + Url.Content("~/User/blogedit?BlogID=" + BlogID + "") + "', '_self')</script>");
+                return Content("<script>alert('修改过程好像有点问题！');window.open('" + Url.Content("~/UserBlog/seeblogdetails?BlogID=" + BlogID + "") + "', '_self')</script>");
             }
-            return Content("<script>alert('修改成功');window.open('" + Url.Content("~/User/blogdetails?BlogID=" + BlogID + "") + "', '_self')</script>");
+            return Content("<script>alert('修改成功');window.open('" + Url.Content("~/UserBlog/seeblogdetails?BlogID=" + BlogID + "") + "', '_self')</script>");
         }
         
     }

@@ -1,3 +1,10 @@
 ﻿@{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
+@{ 
+    var fans = Model;
+}
+@foreach (var f in fans)
+{
+    <div><a href="~/UserBlog/seeuserdetails?BloggerID=@f.DoFocus"> @f.DoFocus </a></div>
+}

@@ -1,65 +1,140 @@
-﻿@model Blog.Models.Blog 
-  @{
-      Layout = null;
-}
-<html>
-<head>
-    <title>发表博文</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=gbk" />
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="~/Content/owncss/style.css" rel="stylesheet" />
-    <script type="text/javascript" charset="gbk" src="~/Content/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" charset="gbk" src="~/Content/ueditor/ueditor.all.js"> </script>
-    <script type="text/javascript" charset="gbk" src="~/Content/ueditor/ueditor.all.min.js"> </script>
-    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-    <script type="text/javascript" charset="gbk" src="~/Content/ueditor/lang/zh-cn/zh-cn.js"></script>
-    <style type="text/css">
-        div {
-            width: 100%;
-        }
-    </style>
-</head>
-<body>   
-       
-        <div class="row">
-            <div class="col-md-10 col-lg-offset-1" style="margin-top:3%">
-                <div class="form-group">
-                    <a href="~/User/Index">
-                        <span class="glyphicon glyphicon-backward" style="font-size:large">返回</span>                      
-                    </a>                  
-                    <a href="~/User/blogdelete?BlogID=@Model.BlogID">删除</a>
-                    <a href="~/User/blogedit?BlogID=@Model.BlogID">修改</a>                             
-                    
-                </div>
-                <div class="form-group">
-                    <label for="textfield"><span style="font-size: large"> 标题</span>:</label>
-                    <input name="title" type="text" id="title" class="form-control" value=@Model.BlogTitle disabled="disabled">
-                </div>
-                <div class="form-group">
-                    <label for="select" style="font-size: large">分类:</label>
+﻿@model Blog.Models.Blog
 
-                    <select name="classification" id="classification" class="form-control" onselect=@Model.Classification disabled="disabled">
-                        <option>娱乐</option>
-                        <option>体育</option>
-                        <option>时尚</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="textarea" style="font-size: large">
-                        内容:
-                    </label>
-                   @Html.Raw(Model.BlogContent)
-                </div>           
-    
-     
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@{
+    var comments = ViewBag.comments;
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link type="text/css" rel="stylesheet" href="~/Content/Like/Css/demo.css" />
+    <link href="~/Content/Reward/reward.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/Like/Js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="~/Content/Reward/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="~/Content/Like/Js/Like.js"></script>
+    <script type="text/javascript" src="~/Content/Reward/js/reward.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div>
+            <div class="form-group">
+                <a href="~/User/Index">
+                    <span class="glyphicon glyphicon-backward" style="font-size:large">返回</span>
+                </a> 
+                <a href="~/User/blogdelete?BlogID=@Model.BlogID">删除</a>
+                <a href="~/User/blogedit?BlogID=@Model.BlogID">修改</a>
+
             </div>
         </div>
-    
+        <div class="container">
+            @*<div class="col-lg-3">
+                <ul class="list-group" id="ueserfunction">
+                    <li class="list-group-item">
+                        <a href="~/UserBlog/seeuserdetails?BloggerID=@ViewData["BloggerID"]"><img class="img-responsive" id="head" name="head" src="~/File/Images/@ViewData["BloggerImage"]" /></a>
+                    </li>
+                    <li class="list-group-item">用户名：@ViewData["userName"] </li>
+                    <li class="list-group-item">
+                        @using (Html.BeginForm("focus", "UserBlog", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <button type="submit" class="btn btn-default btn-sm">@ViewData["guanzhu"]</button>
+                            <input id="Hidden1" type="hidden" name="Focused" value=@Model.BloggerID>
+                            <input id="Hidden1" type="hidden" name="BlogID" value=@Model.BlogID>
+
+                        }
+                    </li>
+
+
+                </ul>
+            </div>*@
+
+            <div class="col-md-8">
+                <form role="form">
+                    <div class="form-group">
+                        <div style="font-size:larger"><h3>@Model.BlogTitle</h3></div>
+                    </div>
+                </form>
+                <br />
+                <form role="form">
+                    <div class="form-group">
+                        <div>@Html.Raw(Model.BlogContent)</div>
+                    </div>
+                    <div>
+                        <a href="~/UserBlog/comment?BlogID=@Model.BlogID&ReplyID=@Model.BloggerID">评论</a>
+
+                    </div>
+                </form>
+                <br />
+                @using (Html.BeginForm("like", "UserBlog", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <input id="Hidden1" name="LikeBlogID" value=@Model.BlogID type="hidden">
+                    <button type="submit" class="btn btn-default btn-sm" style="background: @ViewData["background"]">
+                        <span class="glyphicon glyphicon-thumbs-up"></span> @ViewData["likescount"]
+                    </button>
+
+                }
+
+                <div class="content">
+                    <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下"><span>打赏</span></a></p>
+                    <div class="hide_box"></div>
+                    <div class="shang_box">
+                        <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()" title="关闭"><img src="~/Content/Reward/img/close.jpg" alt="取消" /></a>
+                        <div class="shang_tit">
+                            <p>感谢您的支持，我会继续努力的!</p>
+                        </div>
+                        <div class="shang_payimg">
+                            <div class="shang_pay">
+                                <span><img src="~/Content/Reward/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" /></span>
+                            </div>
+                            <div class="shang_pay">
+                                <span><img src="~/Content/Reward/img/weipayimg.jpg" alt="扫码支持" title="扫一扫" /></span>
+                            </div>
+                        </div>
+
+                        <div class="pay_explain">扫码打赏，你说多少就多少</div>
+
+                        <div class="shang_payselect">
+                            <div class="pay_item" data-id="alipay">
+                                <span class="pay_logo"><img src="~/Content/Reward/img/alipay.jpg" alt="支付宝" /></span>
+                            </div>
+                            <div class="pay_item" data-id="weipay">
+                                <span class="pay_logo"><img src="~/Content/Reward/img/wechat.jpg" alt="微信" /></span>
+                            </div>
+                        </div>
+                        <div class="shang_info">
+                            <p>打开<span id="shang_pay_txt">支付宝/微信</span>扫一扫，即可进行扫码打赏哦</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div>
+                    <label for="name">所有评论：</label>
+                    <!-- 显示所有评论 -->
+                    @if (comments != null)
+                    {
+                        foreach (var c in comments)
+                        {
+                            <div>
+                                <p><a href="~/UserBlog/seeuserdetails?BloggerID=@c.UserID ">  @c.UserID </a>回复<a href="~/UserBlog/seeuserdetails?BloggerID=@c.ReplyID "> @c.ReplyID </a>于：@c.CommentTime </p>
+                                <p>: @c.CommentContent<a href="~/UserBlog/comment?BlogID=@c.BlogID &ReplyID= @c.UserID">回复</a></p>
+                                <p>-------------------------------------------------------------------------------------------------------</p>
+                            </div>
+
+                        }
+                    }
+                </div>
+                <br />
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-
-
-
