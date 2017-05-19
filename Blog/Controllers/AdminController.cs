@@ -171,6 +171,7 @@ namespace Blog.Controllers
             ViewData["BloggerImage"] = user.UserImage;
             ViewData["BloggerID"] = user.UserID;
             ViewData["userName"] = user.UserName;
+            ViewData["userID"] = user.UserID;
             ViewBag.comments = comments;
             return View(blog);
         }

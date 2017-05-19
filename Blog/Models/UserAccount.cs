@@ -26,6 +26,12 @@ namespace Blog.Models
         [DisplayName("手机号")]
         public string PhoneNumber { get; set; }
 
+        [DisplayName("支付宝二维码")]
+        public string AlipayImage { get; set; }
+
+        [DisplayName("微信支付二维码")]
+        public string WeChatImage { get; set; }
+
         [DisplayName("身份")]
         public string Identification { get; set; }
 
