@@ -1,3 +1,20 @@
 ﻿@{
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var messages = Model;
+}
+
+<div class="form-group">
+    <a href="#" onClick="javascript:history.back(-1);">
+        <span class="glyphicon glyphicon-backward" style="font-size:large">返回</span>
+    </a>
+</div>
+@foreach (var m in messages)
+{
+    <div>
+        <p><a href="~/UserBlog/seeuserdetails?BloggerID=@m.SenderID">@m.SenderID </a>于 @m.LeaveTime 给 @m.ReceiverID  留言：</p>
+        <p>@m.MessageContent </p>
+        <p>-------------------------------------------------------------------------------------</p>
+    </div>
 }

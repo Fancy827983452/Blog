@@ -442,7 +442,6 @@
     <Content Include="Content\ueditor\ueditor.config.js" />
     <Content Include="Content\ueditor\ueditor.parse.js" />
     <Content Include="Content\ueditor\ueditor.parse.min.js" />
-    <Content Include="Content\测试数据.sql" />
     <Content Include="File\03.jpg" />
     <Content Include="File\1.jpg" />
     <Content Include="File\1_120417102159_1.jpg" />
@@ -450,6 +449,10 @@
     <Content Include="File\3.jpg" />
     <Content Include="File\bg1.jpg" />
     <Content Include="File\bg4.jpg" />
+    <Content Include="File\I1.jpg" />
+    <Content Include="File\I2.jpg" />
+    <Content Include="File\I3.jpg" />
+    <Content Include="File\I4.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\Blog.csproj.FileListAbsolute.txt" />
@@ -503,7 +506,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Blog.cs" />
+    <Compile Include="Models\Focus.cs" />
     <Compile Include="Models\Like.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Recommend.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -534,7 +539,6 @@
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\User\blogdetails.cshtml" />
     <Content Include="Views\User\blogedit.cshtml" />
-    <Content Include="Views\User\hello.cshtml" />
     <Content Include="Views\Home\FirstPage.cshtml" />
     <Content Include="Views\UserBlog\seeblogdetails.cshtml" />
     <Content Include="Views\UserBlog\seeuserdetails.cshtml" />
@@ -545,24 +549,7 @@
     <Content Include="Views\UserBlog\WriteMessage.cshtml" />
     <Content Include="Views\Admin\ViewUsers.cshtml" />
     <Content Include="Views\Shared\_blogLayout.cshtml" />
-    <Content Include="Views\Home\Sports.cshtml" />
-    <Content Include="Views\Home\History.cshtml" />
-    <Content Include="Views\Home\Stock.cshtml" />
-    <Content Include="Views\Home\Constellation.cshtml" />
-    <Content Include="Views\Home\Female.cshtml" />
-    <Content Include="Views\Home\Education.cshtml" />
-    <Content Include="Views\Home\Food.cshtml" />
-    <Content Include="Views\Home\Design.cshtml" />
-    <Content Include="Views\Home\BringUp.cshtml" />
-    <Content Include="Views\Home\Travel.cshtml" />
-    <Content Include="Views\Home\Collect.cshtml" />
-    <Content Include="Views\Home\Fashion.cshtml" />
-    <Content Include="Views\Home\Picture.cshtml" />
-    <Content Include="Views\Home\YueBo.cshtml" />
-    <Content Include="Views\Home\Address.cshtml" />
-    <Content Include="Views\Admin\SearchBlog.cshtml" />
-    <Content Include="Views\Admin\SearchUser.cshtml" />
-    <Content Include="Views\Admin\seeblogdetails.cshtml" />
+    <Content Include="Views\User\AtMe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
