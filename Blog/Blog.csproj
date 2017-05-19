@@ -551,9 +551,9 @@
     <Content Include="Views\Admin\ViewUsers.cshtml" />
     <Content Include="Views\Shared\_blogLayout.cshtml" />
     <Content Include="Views\User\AtMe.cshtml" />
-    <Content Include="Views\Home\Address.cshtml" />
+    <Content Include="Views\Home\Social.cshtml" />
     <Content Include="Views\Home\BringUp.cshtml" />
-    <Content Include="Views\Home\Collect.cshtml" />
+    <Content Include="Views\Home\Military.cshtml" />
     <Content Include="Views\Home\Constellation.cshtml" />
     <Content Include="Views\Home\Design.cshtml" />
     <Content Include="Views\Home\Education.cshtml" />
@@ -565,7 +565,7 @@
     <Content Include="Views\Home\Sports.cshtml" />
     <Content Include="Views\Home\Stock.cshtml" />
     <Content Include="Views\Home\Travel.cshtml" />
-    <Content Include="Views\Home\YueBo.cshtml" />
+    <Content Include="Views\Home\Health.cshtml" />
     <Content Include="Views\Admin\SearchBlog.cshtml" />
     <Content Include="Views\Admin\SearchUser.cshtml" />
     <Content Include="Views\Admin\seeblogdetails.cshtml" />

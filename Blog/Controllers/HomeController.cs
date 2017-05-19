@@ -75,9 +75,9 @@ namespace Blog.Controllers
             List<Models.Blog> models = db.Blogs.Where(m => m.Classification == "旅游").ToList();
             return View(models);
         }
-        public ActionResult Collect()
+        public ActionResult Military()
         {
-            List<Models.Blog> models = db.Blogs.Where(m => m.Classification == "收藏").ToList();
+            List<Models.Blog> models = db.Blogs.Where(m => m.Classification == "军事").ToList();
             return View(models);
         }
         public ActionResult Fashion()
@@ -90,14 +90,14 @@ namespace Blog.Controllers
             List<Models.Blog> models = db.Blogs.Where(m => m.Classification == "图片").ToList();
             return View(models);
         }
-        public ActionResult YueBo()
+        public ActionResult Health()
         {
-            List<Models.Blog> models = db.Blogs.Where(m => m.Classification == "悦博").ToList();
+            List<Models.Blog> models = db.Blogs.Where(m => m.Classification == "健康").ToList();
             return View(models);
         }
-        public ActionResult Address()
+        public ActionResult Social()
         {
-            List<Models.Blog> models = db.Blogs.Where(m => m.Classification == "博客地址").ToList();
+            List<Models.Blog> models = db.Blogs.Where(m => m.Classification == "社会").ToList();
             return View(models);
         }
     }
