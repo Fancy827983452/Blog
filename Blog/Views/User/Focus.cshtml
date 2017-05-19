@@ -1,14 +1,40 @@
 ﻿@{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-@{
-    var focuses = Model;
+@{ 
+    string path;
+    var focuses = ViewBag.focuses;
 }
-<table>
+<link href="~/Content/Site.css" rel="stylesheet" />
+<div>
     @foreach (var f in focuses)
     {
-        <tr>
-            <td><a href="~/UserBlog/seeuserdetails?BloggerID=@f.Focused">@f.Focused</a></td>
-        </tr>
+        Blog.DatabaseContext.BlogDbContext db = new Blog.DatabaseContext.BlogDbContext();
+        Blog.Models.UserAccount userAccountModel = db.UserAccounts.Find(f.Focused);
+        string img = userAccountModel.UserImage;
+        if (img != "defaultUserImage.jpg")
+        {
+
+            path = "Images/"+ f.Focused +"/"+ img;
+
+        }
+        else
+        {
+            path = "Images/defaultUserImage.jpg";
+        }
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <a href="~/UserBlog/seeuserdetails?BloggerID=@f.Focused">
+                            <img class="img-responsive" name="head" id="head" src="~/File/@path" />
+                            @f.Focused
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <br />
     }
-</table>
+</div>

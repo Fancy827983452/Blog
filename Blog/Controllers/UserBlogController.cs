@@ -20,6 +20,11 @@ namespace Blog.Controllers
         {
             Models.Blog blog = db.Blogs.Find(BlogID);//找到博文
             Models.UserAccount user = db.UserAccounts.Find(blog.BloggerID);//找到博主的信息存好   
+            string BloggerID = user.UserID;
+            List<Models.Focus> fans = db.Focuses.Where(m => m.Focused == BloggerID).ToList();//粉丝数
+            List<Models.Focus> focus = db.Focuses.Where(m => m.DoFocus == BloggerID).ToList();//关注的人数
+            int fancount = fans.Count();
+            int focuscount = focus.Count();
 
             List<Models.Comment> comments = db.Comments.Where(m => m.BlogID == BlogID).ToList();//吧博文的评论保存好
 
@@ -36,7 +41,6 @@ namespace Blog.Controllers
                 ViewData["background"] = "pink";
             }
             //判断是否已经关注此人    
-            String BloggerID = user.UserID;//博主ID
             List<Models.Focus> focuses = db.Focuses.Where(n => n.DoFocus == UserID).Where(m => m.Focused == BloggerID).ToList(); //判断是否关注此人
             if (focuses.Count() == 0)//没有关注
             {
@@ -50,6 +54,8 @@ namespace Blog.Controllers
             ViewData["BloggerImage"] = user.UserImage;
             ViewData["BloggerID"] = blog.BloggerID;
             ViewData["userName"] = user.UserName;
+            ViewData["fancount"] = fancount;
+            ViewData["focuscount"] = focuscount;
             ViewBag.comments = comments;
             return View(blog);
         }

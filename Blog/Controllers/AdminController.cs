@@ -35,8 +35,15 @@ namespace Blog.Controllers
         {
             Models.UserAccount user = db.UserAccounts.Find(UserID);//找到用户           
             List<Models.Blog> blogs = db.Blogs.Where(m => m.BloggerID == UserID).ToList();//找到用户所有的博文
-            ViewBag.blogs = blogs;
 
+            List<Models.Focus> fans = db.Focuses.Where(m => m.Focused == UserID).ToList();//粉丝数
+            List<Models.Focus> focus = db.Focuses.Where(m => m.DoFocus == UserID).ToList();//关注的人数
+            int fancount = fans.Count();
+            int focuscount = focus.Count();
+
+            ViewBag.blogs = blogs;
+            ViewData["fancount"] = fancount;
+            ViewData["focuscount"] = focuscount;
             return View(user);
         }
 
@@ -161,6 +168,10 @@ namespace Blog.Controllers
             Models.Blog blog = db.Blogs.Find(BlogID);//找到博文
             Models.UserAccount user = db.UserAccounts.Find(blog.BloggerID);//找到博主的信息存好   
             List<Models.Comment> comments = db.Comments.Where(m => m.BlogID == BlogID).ToList();//吧博文的评论保存好
+            List<Models.Focus> fans = db.Focuses.Where(m => m.Focused == blog.BloggerID).ToList();//粉丝数
+            List<Models.Focus> focus = db.Focuses.Where(m => m.DoFocus == blog.BloggerID).ToList();//关注的人数
+            int fancount = fans.Count();
+            int focuscount = focus.Count();
 
             //赞数和是否已经点赞过
             String UserID = Session["UserID"].ToString();
@@ -172,6 +183,8 @@ namespace Blog.Controllers
             ViewData["BloggerID"] = user.UserID;
             ViewData["userName"] = user.UserName;
             ViewData["userID"] = user.UserID;
+            ViewData["fancount"] = fancount;
+            ViewData["focuscount"] = focuscount;
             ViewBag.comments = comments;
             return View(blog);
         }

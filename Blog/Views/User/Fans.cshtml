@@ -3,8 +3,36 @@
 }
 @{
     var fans = Model;
+    string path;
 }
+<link href="~/Content/Site.css" rel="stylesheet" />
 @foreach (var f in fans)
 {
-    <div><a href="~/UserBlog/seeuserdetails?BloggerID=@f.DoFocus"> @f.DoFocus </a></div>
+    Blog.DatabaseContext.BlogDbContext db = new Blog.DatabaseContext.BlogDbContext();
+    Blog.Models.UserAccount userAccountModel = db.UserAccounts.Find(f.DoFocus);
+    string img = userAccountModel.UserImage;
+    if (img != "defaultUserImage.jpg")
+    {
+
+        path = "Images/" + f.DoFocus + "/" + img;
+
+    }
+    else
+    {
+        path = "Images/defaultUserImage.jpg";
+    }
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <a href="~/UserBlog/seeuserdetails?BloggerID=@f.DoFocus">
+                        <img class="img-responsive" name="head" id="head" src="~/File/@path" />
+                        @f.DoFocus
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+        <br />
+        <br />
 }

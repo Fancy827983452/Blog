@@ -242,6 +242,7 @@ namespace Blog.Controllers
         {
             String MyUserID = Session["UserID"].ToString();
             List<Models.Focus> focuses = db.Focuses.Where(m => m.DoFocus == MyUserID).ToList();//所以我关注的人
+            ViewBag.focuses = focuses;
             return View(focuses);
         }
         public ActionResult AtMe()//回复我的消息
