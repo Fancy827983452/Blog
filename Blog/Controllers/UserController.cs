@@ -84,7 +84,7 @@ namespace Blog.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditInfo([Bind(Include = "UserID,UserName,Password,UserImage,PhoneNumber,Identification")]UserAccount userAccountModel, FormCollection fc, HttpPostedFileBase file)
+        public ActionResult EditInfo([Bind(Include = "UserID,UserName,Password,UserImage,PhoneNumber,Identification")]UserAccount userAccountModel, FormCollection fc, HttpPostedFileBase file, HttpPostedFileBase Alipay, HttpPostedFileBase WeChat)
         {
             if (fc["username"].ToString().Trim().Equals(""))
                 return Content("<script>alert('标记为 * 的输入框不能为空，请重新输入！');window.open('" + Url.Content("~/User/EditInfo") + "', '_self')</script>");
@@ -105,24 +105,57 @@ namespace Blog.Controllers
                         {
                             try
                             {
-                                var fileName = Path.Combine(Request.MapPath("~/File/Images"), Path.GetFileName(file.FileName));
-                                file.SaveAs(fileName);  //把在电脑里面选择的图片保存在当前程序的File/Images文件目录下                   
+                                string path = "~/File/Images/" + Session["UserID"];
+                                var fileName = Path.Combine(Request.MapPath(path), Path.GetFileName(file.FileName));
+                                if (!Directory.Exists(path)) //如果该文件夹不存在就建立这个新文件夹
+                                {
+                                    Directory.CreateDirectory(Path.GetDirectoryName(fileName));
+                                }
+                                file.SaveAs(fileName);  //把在电脑里面选择的图片保存在当前程序的File/Images文件目录下 
+                                userAccountModel.UserImage = file.FileName;//仅仅保存图片的名字                  
                             }
                             catch (Exception e)
                             {
-                                return Content("上传异常 ！", "text/plain");
-                                //return Content("<script>alert('上传异常 ！');window.open('" + Url.Content("~/User/EditInfo") + "', '_self')</script>");
+                                return Content("头像上传异常 ！", "text/plain");                            }
+                            if (Alipay != null)
+                            {
+                                try
+                                {
+                                    string path = "~/File/Images/" + Session["UserID"];
+                                    var AlipayName = Path.Combine(Request.MapPath(path), Path.GetFileName(Alipay.FileName));
+                                    if (!Directory.Exists(path)) //如果该文件夹不存在就建立这个新文件夹
+                                    {
+                                        Directory.CreateDirectory(Path.GetDirectoryName(AlipayName));
+                                    }
+                                    Alipay.SaveAs(AlipayName);  //把在电脑里面选择的图片保存在当前程序的File/Images/UserID文件目录下   
+                                    userAccountModel.AlipayImage = Alipay.FileName;//仅仅保存图片的名字                
+                                }
+                                catch (Exception e)
+                                {
+                                    return Content("支付宝二维码上传异常 ！", "text/plain");
+                                }
+                            }
+                            if (WeChat != null)
+                            {
+                                try
+                                {
+                                    string path = "~/File/Images/" + Session["UserID"];
+                                    var WeChatName = Path.Combine(Request.MapPath(path), Path.GetFileName(WeChat.FileName));
+                                    if (!Directory.Exists(path)) //如果该文件夹不存在就建立这个新文件夹
+                                    {
+                                        Directory.CreateDirectory(Path.GetDirectoryName(WeChatName));
+                                    }
+                                    WeChat.SaveAs(WeChatName);  //把在电脑里面选择的图片保存在当前程序的File/Images/UserID文件目录下     
+                                    userAccountModel.WeChatImage = WeChat.FileName;//仅仅保存图片的名字                
+                                }
+                                catch (Exception e)
+                                {
+                                    return Content("微信二维码上传异常 ！", "text/plain");
+                                }
                             }
 
-                            //db.UserAccounts.Remove(userAccountModel);
-                            //db.SaveChanges();
-                            //userAccountModel.UserID = Session["UserID"].ToString();
                             userAccountModel.UserName = fc["userName"];
-                            //userAccountModel.Password = password;
-                            userAccountModel.UserImage = file.FileName;//仅仅保存图片的名字
                             userAccountModel.PhoneNumber = fc["tel"];
-                            //userAccountModel.Identification = "user";
-                            //db.UserAccounts.Add(userAccountModel);
                             db.Entry(userAccountModel).State = EntityState.Modified;
                             db.SaveChanges();
 

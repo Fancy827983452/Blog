@@ -36,7 +36,7 @@ namespace Blog.Controllers
             }
             ViewData["likescount"] = likescount;
             ViewData["BloggerImage"] = user.UserImage;
-            ViewData["BloggerID"] = user.UserID;
+            ViewData["BloggerID"] = blog.BloggerID;
             ViewData["userName"] = user.UserName;
             ViewBag.comments = comments;
             return View(blog);

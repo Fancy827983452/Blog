@@ -11,17 +11,17 @@
                     Blog.DatabaseContext.BlogDbContext db = new Blog.DatabaseContext.BlogDbContext();
                     Blog.Models.UserAccount userAccountModel = db.UserAccounts.Find(Session["UserID"]);
                     string img = userAccountModel.UserImage;
-                    if (img != null)
+                    if (img != "defaultUserImage.jpg")
                     {
-                        path = "Images/"+ img;
+                        path = Session["UserID"] +"/"+ img;
                     }
                     else
                     {
-                        path = "Images/defaultUserImage.jpg";
+                        path = "defaultUserImage.jpg";
                     }
                 }
                 @*<span>path = @path</span>*@
-                <img class="img-responsive" name="head" id="head" src="~/File/@path" />
+                <img class="img-responsive" name="head" id="head" src="~/File/Images/@path" />
             </li>
             <li class="list-group-item"><a href="~/User/Write">发表博文</a></li>
             <li class="list-group-item"><a href="~/User/Index">查看博文</a></li>

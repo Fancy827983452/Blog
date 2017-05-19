@@ -28,9 +28,9 @@
                 <div class="col-lg-3">
                     <ul class="list-group" id="ueserfunction">
                         <li class="list-group-item">
-                           <img class="img-responsive" id="head" name="head" src="~/File/Images/@ViewData["UserImage"]" />
+                           <img class="img-responsive" id="head" name="head" src="~/File/Images/@ViewData["UserName"]/@ViewData["UserImage"]" />
                         </li>
-                        <li class="list-group-item">用户名: @ViewData["UserName"]</li>
+                        <li class="list-group-item">用户名：@ViewData["UserName"]</li>
                         <li class="list-group-item">
                             <button type="button" class="btn btn-default btn-sm">加关注</button>
                             <button type="button" class="btn btn-default btn-sm">写留言</button>

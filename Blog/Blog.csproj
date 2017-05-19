@@ -442,6 +442,7 @@
     <Content Include="Content\ueditor\ueditor.config.js" />
     <Content Include="Content\ueditor\ueditor.parse.js" />
     <Content Include="Content\ueditor\ueditor.parse.min.js" />
+    <Content Include="Content\测试数据.sql" />
     <Content Include="File\03.jpg" />
     <Content Include="File\1.jpg" />
     <Content Include="File\1_120417102159_1.jpg" />
@@ -559,6 +560,9 @@
     <Content Include="Views\Home\Picture.cshtml" />
     <Content Include="Views\Home\YueBo.cshtml" />
     <Content Include="Views\Home\Address.cshtml" />
+    <Content Include="Views\Admin\SearchBlog.cshtml" />
+    <Content Include="Views\Admin\SearchUser.cshtml" />
+    <Content Include="Views\Admin\seeblogdetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
