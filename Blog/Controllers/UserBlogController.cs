@@ -200,9 +200,58 @@ namespace Blog.Controllers
 
 
         }
-        public ActionResult SendPrivateMessage()
+        
+
+        public ActionResult deletecomment(String CommentID)//删除指定的评论
         {
-            return View();
+          
+            try
+            {
+                int CommentID1 = Convert.ToInt32(CommentID);
+                Models.Comment comment = db.Comments.Find(CommentID1);
+                db.Comments.Remove(comment);
+                db.SaveChanges();
+                return Content("<script language=javascript>alert('删除评论成功！');self.location=document.referrer;</script>");
+
+            }
+            catch (Exception e)
+            {
+                return Content("<script language=javascript>alert('删除评论失败！');self.location=document.referrer;</script>");
+            }
         }
+
+
+        [HttpGet]
+        public ActionResult SendPrivateMessage(String Receiver)
+        {
+            String MyUserID = Session["UserID"].ToString();
+            List<Models.PrivateMessage> sends = db.PrivateMessage.Where(m => m.ReceiverID == Receiver).Where(n => n.SenderID == MyUserID).ToList();
+            List<Models.PrivateMessage> receives = db.PrivateMessage.Where(m => m.ReceiverID == MyUserID).Where(n => n.SenderID == Receiver).ToList();
+            List<Models.PrivateMessage> allpm = sends.Union(receives).OrderBy(c => c.SendTime).ToList();
+            ViewData["Receiver"] = Receiver;//保存你要发的对象
+            return View(allpm);
+        }
+
+        [HttpPost]
+        public ActionResult SendPrivateMessage(Models.PrivateMessage pm, String Receiver,String pmcontent)//参数是你要发送的对象
+        {
+            try
+            {
+                pm.ReceiverID = Receiver;
+                pm.SenderID = Session["UserID"].ToString();
+                pm.SendTime = DateTime.Now;
+                pm.MessageContent = pmcontent;
+                db.PrivateMessage.Add(pm);
+                db.SaveChanges();
+                return Content("<script>alert('发送成功！');window.open('" + Url.Content("~/UserBlog/SendPrivateMessage?Receiver=" + Receiver + "") + "', '_self')</script>");
+            }
+            catch (Exception e)
+            {
+                return Content("<script>alert('发送失败！');window.open('" + Url.Content("~/UserBlog/SendPrivateMessage?Receiver=" + Receiver + "") + "', '_self')</script>");
+            }
+            
+        }
+
+
     }
 }

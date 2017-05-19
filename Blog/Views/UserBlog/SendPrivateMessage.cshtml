@@ -2,6 +2,10 @@
     Layout = "~/Views/Shared/_blogLayout.cshtml";
 
 }
+@{
+
+    var allpm = Model;
+}
 <div>
     <label for="name">私信：</label>
     <!-- 显示所有私信 每一条私信后面要有回复的链接-->
@@ -9,12 +13,29 @@
 <br />
 <div>
     <form role="form">
+        <a href="#">历史记录</a>
         <div class="form-group">
-            <label for="name">写私信：</label>
-            <textarea class="form-control" rows="3"></textarea>
-        </div>
-        <div align="right">
-            <button type="button" class="btn btn-default">发送</button>
+
+            @foreach (var p in allpm)
+            {
+                <p> @p.SenderID @p.SendTime </p>
+                <p> @p.MessageContent</p>
+            }
         </div>
     </form>
+
+    @using (Html.BeginForm("SendPrivateMessage", "UserBlog", FormMethod.Post))
+   {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label for="name">写私信：</label>
+            <textarea class="form-control" rows="3" name="pmcontent"></textarea>
+        </div>
+        <div align="right">
+            <button type="submit" class="btn btn-default">发送</button>
+            <input id="Hidden1" type="hidden" name="Receiver" value=@ViewData["Receiver"] >
+        </div>
+    }
+  
 </div>

@@ -48,8 +48,15 @@
                                 <input id="Hidden1" type="hidden" name="Receiver" value=@Model.UserID>@*这个是用户ID*@
                             }
 
+                         @using (Html.BeginForm("SendPrivateMessage", "UserBlog", FormMethod.Get))
+                       {
+                             @Html.AntiForgeryToken()
+                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <button type="submit" class="btn btn-default btn-sm">发私信</button>
+                            <input id="Hidden1" type="hidden" name="Receiver" value=@Model.UserID > 
 
-                            <button type="button" class="btn btn-default btn-sm">发私信</button>
+                      }
+
                         </li>
                         <li class="list-group-item">关注人数：@ViewData["focuscount"]</li>
                         <li class="list-group-item">粉丝数:@ViewData["fancount"]</li>

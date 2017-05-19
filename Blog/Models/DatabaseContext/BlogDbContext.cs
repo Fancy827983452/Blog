@@ -22,5 +22,6 @@ namespace Blog.DatabaseContext
         public System.Data.Entity.DbSet<Blog.Models.Focus> Focuses { get; set; }
         public System.Data.Entity.DbSet<Blog.Models.Message> Messages { get; set; }
         public System.Data.Entity.DbSet<Blog.Models.Recommend> Recommends { get; set; }
+        public System.Data.Entity.DbSet<Blog.Models.PrivateMessage> PrivateMessage { get; set; }
     }
 }

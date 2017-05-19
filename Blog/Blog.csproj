@@ -505,6 +505,7 @@
     <Compile Include="Models\Focus.cs" />
     <Compile Include="Models\Like.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\PrivateMessage.cs" />
     <Compile Include="Models\Recommend.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -546,6 +547,25 @@
     <Content Include="Views\Admin\ViewUsers.cshtml" />
     <Content Include="Views\Shared\_blogLayout.cshtml" />
     <Content Include="Views\User\AtMe.cshtml" />
+    <Content Include="Views\Admin\SearchBlog.cshtml" />
+    <Content Include="Views\Admin\SearchUser.cshtml" />
+    <Content Include="Views\Admin\seeblogdetails.cshtml" />
+    <Content Include="Views\Home\Address.cshtml" />
+    <Content Include="Views\Home\BringUp.cshtml" />
+    <Content Include="Views\Home\Collect.cshtml" />
+    <Content Include="Views\Home\Constellation.cshtml" />
+    <Content Include="Views\Home\Design.cshtml" />
+    <Content Include="Views\Home\Education.cshtml" />
+    <Content Include="Views\Home\Fashion.cshtml" />
+    <Content Include="Views\Home\Female.cshtml" />
+    <Content Include="Views\Home\Stock.cshtml" />
+    <Content Include="Views\Home\Food.cshtml" />
+    <Content Include="Views\Home\History.cshtml" />
+    <Content Include="Views\Home\Picture.cshtml" />
+    <Content Include="Views\Home\Sports.cshtml" />
+    <Content Include="Views\Home\Travel.cshtml" />
+    <Content Include="Views\Home\YueBo.cshtml" />
+    <Content Include="Views\User\PrivateMessage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
