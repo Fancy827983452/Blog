@@ -2,7 +2,9 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    string alipay;
+    string wechat;
+    string path;
 }
 @{
     var comments = ViewBag.comments;
@@ -36,7 +38,20 @@
             <div class="col-lg-3">
                 <ul class="list-group" id="ueserfunction">
                     <li class="list-group-item">
-                        <a href="~/UserBlog/seeuserdetails?BloggerID=@ViewData["BloggerID"]"><img class="img-responsive" id="head" name="head" src="~/File/Images/@ViewData["BloggerImage"]" /></a>
+                        <a href="~/UserBlog/seeuserdetails?BloggerID=@ViewData["BloggerID"]">
+                            @{
+                                string img = ViewData["BloggerImage"].ToString();
+                                if (img != "defaultUserImage.jpg")
+                                {
+                                    path = ViewData["BloggerID"] + "/" + img;
+                                }
+                                else
+                                {
+                                    path = "defaultUserImage.jpg";
+                                }
+                            }
+                            <img class="img-responsive" id="head" name="head" src="~/File/Images/@path" />
+                        </a>
                     </li>
                     <li class="list-group-item">用户名：@ViewData["userName"] </li>
                     <li class="list-group-item">
@@ -45,14 +60,26 @@
                             @Html.AntiForgeryToken()
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <button type="submit" class="btn btn-default btn-sm">@ViewData["guanzhu"]</button>
-                            <input id="Hidden1" type="hidden" name="Focused" value=@Model.BloggerID>
-                            <input id="Hidden1" type="hidden" name="BlogID" value=@Model.BlogID>
-
+                                <input id="Hidden1" type="hidden" name="Focused" value=@Model.BloggerID>@*这个是用户ID*@
                         }
                     </li>
-
-
+                    <li class="list-group-item">
+                        @using (Html.BeginForm("WriteMessage", "UserBlog", FormMethod.Get))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <button type="submit" class="btn btn-default btn-sm">写留言</button>
+                                <input id="Hidden1" type="hidden" name="Receiver" value=@Model.BloggerID>@*这个是用户ID*@
+                        }
+                    </li>
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-default btn-sm">发私信</button>
+                    </li>
+                    <li class="list-group-item">关注人数：@ViewData["focuscount"]</li>
+                    <li class="list-group-item">粉丝数:@ViewData["fancount"]</li>
+                    <li class="list-group-item"><a href="~/User/Message?UserID=@Model.BloggerID">留言内容</a></li>
                 </ul>
+
             </div>
 
             <div class="col-md-8">
@@ -92,12 +119,24 @@
                             <p>感谢您的支持，我会继续努力的!</p>
                         </div>
                         <div class="shang_payimg">
-                            <div class="shang_pay">
-                                <span><img src="~/Content/Reward/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" /></span>
-                            </div>
-                            <div class="shang_pay">
-                                <span><img src="~/Content/Reward/img/weipayimg.jpg" alt="扫码支持" title="扫一扫" /></span>
-                            </div>
+                            @{
+                                Blog.DatabaseContext.BlogDbContext db = new Blog.DatabaseContext.BlogDbContext();
+                                Blog.Models.UserAccount userAccountModel = db.UserAccounts.Find(ViewData["BloggerID"]);
+                                alipay = userAccountModel.AlipayImage;
+                                wechat = userAccountModel.WeChatImage;
+                                if (alipay != null)
+                                {
+                                    <div class="shang_pay">
+                                        <span><img src="~/File/Images/@ViewData["BloggerID"]/@alipay" alt="扫码支持" title="扫一扫" /></span>
+                                    </div>
+                                }
+                                if (wechat != null)
+                                {
+                                    <div class="shang_pay">
+                                        <span><img src="~/File/Images/@ViewData["BloggerID"]/@wechat" alt="扫码支持" title="扫一扫" /></span>
+                                    </div>
+                                }
+                            }
                         </div>
 
                         <div class="pay_explain">扫码打赏，你说多少就多少</div>

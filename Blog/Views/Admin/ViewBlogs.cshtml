@@ -29,8 +29,9 @@
                         <tr>
                             <th>博文ID</th>
                             <th>博文标题</th>
-                            <th>操作</th>
-                            <th>&nbsp;&nbsp;</th>
+                            <th>博主ID</th>
+                            <th>删除</th>
+                            <th>推荐</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,26 +42,25 @@
                                 <tr>
                                     <td>@b.BlogID</td>
                                     <td><a href="~/Admin/seeblogdetails?BlogID=@b.BlogID">@b.BlogTitle</a></td>
+                                    <td><a href="~/Admin/ViewUsers?UserID=@b.BloggerID">@b.BloggerID</a></td>
                                     <td>
                                         <form action="~/Admin/DeleteBlogs?BlogID=@b.BlogID" method="post">
                                             <input type="submit" class="btn btn-default" value="删除" />
                                         </form>
                                     </td>
                                     <td>
-                                        
-                                            @if (@b.isRecommended == false)
-                                            {
-                                                <form action="~/Admin/RecommendBlogs?BlogID=@b.BlogID" method="post">
-                                                    <input type="submit" class="btn btn-default" value="推荐" />
-                                                </form>
-                                            }
-                                            else
-                                            {
-                                                <form action="~/Admin/CancelRecommendBlogs?BlogID=@b.BlogID" method="post">
-                                                    <input type="submit" class="btn btn-default" value="取消推荐" />
-                                                </form>
-                                            }
-
+                                        @if (@b.isRecommended == false)
+                                        {
+                                            <form action="~/Admin/RecommendBlogs?BlogID=@b.BlogID" method="post">
+                                                <input type="submit" class="btn btn-default" value="推荐" />
+                                            </form>
+                                        }
+                                        else
+                                        {
+                                            <form action="~/Admin/CancelRecommendBlogs?BlogID=@b.BlogID" method="post">
+                                                <input type="submit" class="btn btn-default" value="取消推荐" />
+                                            </form>
+                                        }
                                     </td>
                                 </tr>
                             }

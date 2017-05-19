@@ -1,6 +1,7 @@
 ﻿@model Blog.Models.UserAccount
 @{
     var blogs = ViewBag.blogs;
+    string path;
 }
 
 
@@ -26,12 +27,24 @@
             <div class="container">
                 <div class="col-lg-3">
                     <ul class="list-group" id="ueserfunction">
-
+                        @{
+                            Blog.DatabaseContext.BlogDbContext db = new Blog.DatabaseContext.BlogDbContext();
+                            Blog.Models.UserAccount userAccountModel = db.UserAccounts.Find(Model.UserID);
+                            string img = userAccountModel.UserImage;
+                            if (img != "defaultUserImage.jpg")
+                            {
+                                path = Model.UserID + "/" + img;
+                            }
+                            else
+                            {
+                                path = "defaultUserImage.jpg";
+                            }
+                        }
                         <li class="list-group-item">
-                            <img class="img-responsive" id="head" name="head" src="~/File/Images/@Model.UserImage" />
+                            <img class="img-responsive" id="head" name="head" src="~/File/Images/@path" />
                         </li>
-                        <li class="list-group-item">用户ID:@Model.UserID</li>
-                        <li class="list-group-item">用户名:@Model.UserName</li>
+                        <li class="list-group-item">用户ID：@Model.UserID</li>
+                        <li class="list-group-item">用户名：@Model.UserName</li>
                         <li class="list-group-item">
                             <button type="button" class="btn btn-default btn-sm">发私信</button>
                         </li>
@@ -42,20 +55,30 @@
                 </div>
 
                 <div class="col-md-8">
-                    <div>
+                    <div class="table-responsive">
                         <!-- 显示所有博文并且能够查看详情,查看详情就跳转到ViewBlogs的页面-->
-                        @if (blogs != null)
-                        {
-                            foreach (var b in blogs)
-                            {
-                                <table>
-                                    <tr>
-                                        <td style="font-size:large;"><p>@b.BlogTitle</p></td>
-                                        <td style="font-size:large; float:right"> <a class="glyphicon glyphicon-chevron-right" href="~/Admin/seeblogdetails?BlogID=@b.BlogID">查看详情</a></td>
-                                    </tr>
-                                </table>
-                            }
-                        }
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>博文ID</th>
+                                    <th>博文标题</th>
+                                    <th>查看详情</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (blogs != null)
+                                {
+                                    foreach (var b in blogs)
+                                    {
+                                        <tr>
+                                            <td style="font-size:large;"><p>@b.BlogID</p></td>
+                                            <td style="font-size:large;"><p>@b.BlogTitle</p></td>
+                                            <td style="font-size:large; float:right"> <a class="glyphicon glyphicon-chevron-right" href="~/Admin/seeblogdetails?BlogID=@b.BlogID">查看详情</a></td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
