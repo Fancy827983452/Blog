@@ -78,6 +78,7 @@ namespace Blog.Controllers
 
             ViewBag.blogs = blogs;
 
+            ViewData["BloggerID"] = BloggerID;
             ViewData["UserImage"] = user.UserImage;
             ViewData["UserName"] = user.UserName;
             ViewData["fancount"] = fancount;

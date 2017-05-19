@@ -6,6 +6,7 @@
 }
 @{
     var comments = ViewBag.comments;
+    string path;
 }
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -31,7 +32,20 @@
             <div class="col-lg-3">
                 <ul class="list-group" id="ueserfunction">
                     <li class="list-group-item">
-                        <img class="img-responsive" id="head" name="head" src="~/File/Images/@ViewData["BloggerID"]/@ViewData["BloggerImage"]" />
+                        @{
+                            Blog.DatabaseContext.BlogDbContext db = new Blog.DatabaseContext.BlogDbContext();
+                            Blog.Models.UserAccount userAccountModel = db.UserAccounts.Find(ViewData["userID"]);
+                            string img = userAccountModel.UserImage;
+                            if (img != "defaultUserImage.jpg")
+                            {
+                                path = ViewData["userID"] + "/" + img;
+                            }
+                            else
+                            {
+                                path = "defaultUserImage.jpg";
+                            }
+                        }
+                        <img class="img-responsive" id="head" name="head" src="~/File/Images/@path" />
                     </li>
                     <li class="list-group-item">用户ID：@ViewData["userID"] </li>
                     <li class="list-group-item">用户名：@ViewData["userName"] </li>
