@@ -22,14 +22,9 @@
     <div class="container">
         <div>
             <div class="form-group">
-                @*<a href="#" onClick="javascript:history.back(-1);">
+                <a href="~/Home/Entertainment">
                     <span class="glyphicon glyphicon-backward" style="font-size:large">返回</span>
-                </a>*@
-                @if (Session["UserID"].ToString().Equals(Model.BloggerID))
-                {
-                    <a href="~/User/blogdelete?BlogID=@Model.BlogID">删除</a>
-                    <a href="~/User/blogedit?BlogID=@Model.BlogID">修改</a>
-                }
+                </a>
             </div>
         </div>
         <div class="container">
@@ -40,18 +35,13 @@
                     </li>
                     <li class="list-group-item">用户名：@ViewData["userName"] </li>
                     <li class="list-group-item">
-                    @using (Html.BeginForm("focus", "UserBlog", FormMethod.Post))
-                   {
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <button type="submit" class="btn btn-default btn-sm">@ViewData["guanzhu"]</button>
-                        <input id="Hidden1" type="hidden" name="Focused" value=@Model.BloggerID >
-                        <input id="Hidden1" type="hidden" name="BlogID" value=@Model.BlogID>
-
-                    }                    
-                   </li>
-               
-                  
+                        <button type="button" class="btn btn-default btn-sm">加关注</button>
+                        <button type="button" class="btn btn-default btn-sm">写留言</button>
+                        <button type="button" class="btn btn-default btn-sm">发私信</button>
+                    </li>
+                    <li class="list-group-item">点赞数</li>
+                    <li class="list-group-item">粉丝数</li>
+                    <li class="list-group-item">留言数</li>
                 </ul>
             </div>
 
@@ -73,7 +63,7 @@
                 </form>
                 <br />
                 @using (Html.BeginForm("like", "UserBlog", FormMethod.Post))
-             {
+            {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <input id="Hidden1" name="LikeBlogID" value=@Model.BlogID type="hidden">

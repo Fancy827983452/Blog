@@ -1,14 +1,3 @@
 ﻿@{
     Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
-@{ 
-    var focuses = Model;
-}
- <table>
-@foreach (var f in focuses)
-{
-    <tr>
-        <td><a href="~/UserBlog/seeuserdetails?BloggerID=@f.Focused">@f.Focused</a></td>
-    </tr>
-}
-     </table>
